@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noimageindex, noai, noimageai">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GALLERY · ANIMUSCULT</title>
+<meta name="description" content="ANIMUSCULT photos and stills.">
+<meta property="og:title" content="ANIMUSCULT · GALLERY">
+<meta property="og:image" content="/assets/video/gallery-bg-poster.webp">
+<meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/vhs.css">
+<style>
+  html { background: #050505; } body { background: transparent; }
+  /* background: Eva's whale film, looped forward then back */
+  .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: #050505; }
+  .bg video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(5,5,5,.2) 0%, rgba(5,5,5,.55) 45%, rgba(5,5,5,.8) 100%); }
+
+  .wrap { max-width: 1500px; margin: 0 auto; padding: calc(var(--nav-h, 56px) + 56px) clamp(14px, 4vw, 60px) 110px; }
+  .head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px 40px; margin-bottom: 34px; }
+  .label { font-family: var(--osd); font-size: 20px; letter-spacing: .14em; color: var(--flame); margin: 0 0 10px; }
+  h1 { margin: 0; font-weight: 600; font-size: clamp(48px, 8vw, 120px); line-height: .9; letter-spacing: .05em; text-shadow: 3px 0 var(--chroma-r), -3px 0 var(--chroma-b); }
+  .count { font-family: var(--osd); font-size: 21px; letter-spacing: .12em; color: var(--bone-dim); margin: 14px 0 0; }
+  .play { font-family: var(--osd); font-size: 24px; letter-spacing: .16em; color: #ffd9d1; padding: 12px 22px; min-height: 52px;
+          background: rgba(20,0,0,.65); border: 1px solid rgba(255,42,31,.55); text-shadow: 0 0 8px var(--flame); box-shadow: 0 0 22px rgba(255,30,20,.25);
+          transition: background .2s, box-shadow .2s, color .2s; }
+  .play:hover, .play:focus-visible { color: #fff; background: rgba(255,42,31,.25); box-shadow: 0 0 34px rgba(255,30,20,.5); }
+  .play .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--flame); box-shadow: 0 0 8px var(--flame); margin-right: 10px; vertical-align: 2px; }
+
+  /* the wall: columns, each picture at its own shape */
+  .wall { columns: 4 260px; column-gap: 12px; }
+  .wall button { display: block; width: 100%; padding: 0; margin: 0 0 12px; break-inside: avoid; position: relative; overflow: hidden;
+                 background: rgba(20,0,0,.5); box-shadow: 0 0 0 1px rgba(235,229,217,.08), 0 12px 34px rgba(0,0,0,.55); }
+  .wall img { display: block; width: 100%; height: auto; filter: saturate(.85) brightness(.86); transition: transform .6s, filter .3s, opacity .5s; opacity: 0; }
+  .wall img.in { opacity: 1; }
+  .wall button::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0, rgba(0,0,0,0) 2px, rgba(0,0,0,.16) 3px, rgba(0,0,0,0) 4px); opacity: .7; }
+  .wall .n { position: absolute; left: 8px; top: 6px; z-index: 2; font-family: var(--osd); font-size: 17px; letter-spacing: .1em; color: var(--flame-hot);
+             text-shadow: 0 0 6px var(--flame), 0 0 2px #000; opacity: 0; transition: opacity .25s; }
+  .wall button:hover img, .wall button:focus-visible img { transform: scale(1.04); filter: none; }
+  .wall button:hover, .wall button:focus-visible { box-shadow: 0 0 0 1px var(--flame), 0 0 26px rgba(255,42,31,.4); }
+  .wall button:hover .n, .wall button:focus-visible .n { opacity: 1; }
+  .wall button:focus-visible { outline: none; }
+  .wall .film { position: absolute; right: 8px; bottom: 6px; z-index: 2; font-family: var(--osd); font-size: 17px; letter-spacing: .1em; color: #ffd9d1;
+                padding: 0 6px; background: rgba(20,0,0,.7); border: 1px solid rgba(255,42,31,.5); text-shadow: 0 0 6px var(--flame); }
+  /* TV scramble: each picture tunes in like a channel when it comes on screen, and glitches for a moment on hover */
+  .wall button::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0;
+    background: var(--noise) 0 0 / 160px 90px, linear-gradient(to bottom, rgba(255,255,255,.0) 40%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 60%) 0 0 / 100% 40%;
+    mix-blend-mode: screen; }
+  .wall button.tune img { animation: tune-img .9s steps(9) both; }
+  .wall button.tune::before { animation: tune-snow .9s steps(9) both; }
+  .wall button.glitch img { animation: glitch-img .45s steps(6) both; }
+  .wall button.glitch::before { animation: glitch-snow .45s steps(6) both; }
+  @keyframes tune-img {
+    0% { opacity: 0; transform: scaleY(.02); filter: brightness(3) contrast(2); }
+    20% { opacity: 1; transform: scaleY(1) translateX(-8px) skewX(4deg); filter: brightness(1.8) contrast(1.6) saturate(0); }
+    40% { transform: translateX(6px); filter: brightness(1.3) contrast(1.4) hue-rotate(40deg) saturate(2); }
+    60% { transform: translateX(-3px) skewX(-2deg); filter: brightness(1.1) saturate(1.3); }
+    80% { transform: translateX(1px); }
+    100% { opacity: 1; transform: none; filter: saturate(.85) brightness(.86); } }
+  @keyframes tune-snow { 0% { opacity: 1; background-position: 0 0, 0 -40%; } 25% { opacity: .9; background-position: 37px 13px, 0 30%; } 50% { opacity: .6; background-position: -21px 41px, 0 90%; } 75% { opacity: .25; background-position: 53px -17px, 0 140%; } 100% { opacity: 0; background-position: 0 0, 0 200%; } }
+  @keyframes glitch-img {
+    0% { transform: scale(1.04); }
+    20% { transform: scale(1.04) translateX(-6px) skewX(3deg); filter: contrast(1.6) hue-rotate(-30deg) saturate(2); clip-path: inset(10% 0 30% 0); }
+    40% { transform: scale(1.04) translateX(5px); filter: contrast(1.3) brightness(1.3); clip-path: inset(0 0 0 0); }
+    60% { transform: scale(1.04) translateX(-2px) skewX(-2deg); filter: hue-rotate(25deg); clip-path: inset(45% 0 12% 0); }
+    100% { transform: scale(1.04); filter: none; clip-path: inset(0 0 0 0); } }
+  @keyframes glitch-snow { 0% { opacity: .55; background-position: 0 0, 0 0; } 50% { opacity: .3; background-position: 29px -33px, 0 120%; } 100% { opacity: 0; background-position: -11px 19px, 0 200%; } }
+  /* no saving the pictures: no long-press menu, no dragging them out */
+  .wall img { -webkit-touch-callout: none; -webkit-user-drag: none; user-select: none; pointer-events: none; }
+  .wall { -webkit-user-select: none; user-select: none; }
+  .empty { font-family: var(--osd); font-size: 22px; letter-spacing: .12em; color: var(--bone-dim); }
+
+  @media (max-width: 700px) { .wall { columns: 2; column-gap: 8px; } .wall button { margin-bottom: 8px; } }
+  /* Reduce Motion: no shaking, just the snow fading in and out */
+  @media (prefers-reduced-motion: reduce) { .wall img { transition: none; } .wall button.tune img, .wall button.glitch img { animation: none; }
+    .wall button.tune::before { animation: snow-soft .9s ease-out both; } .wall button.glitch::before { animation: snow-soft .45s ease-out both; } }
+  @keyframes snow-soft { 0% { opacity: .85; } 100% { opacity: 0; } }
+</style>
+</head>
+<body>
+<script src="assets/js/nav.js"></script>
+<div class="bg" aria-hidden="true"><video id="bgFilm" muted loop playsinline autoplay preload="auto" poster="assets/video/gallery-bg-poster.webp"></video></div>
+
+<main class="wrap">
+  <div class="head">
+    <div>
+      <p class="label">CH 04</p>
+      <h1>GALLERY</h1>
+      <p class="count" id="count"></p>
+    </div>
+    <button class="play" type="button" id="playAll"><span class="dot" aria-hidden="true"></span>PLAY SLIDESHOW</button>
+  </div>
+  <div class="wall" id="wall" aria-label="Photos"></div>
+</main>
+
+<script src="assets/js/vhs.js"></script>
+<script src="assets/js/bgfilm.js"></script>
+<script src="assets/js/slideshow.js"></script>
+<script src="assets/js/site-music.js"></script>
+<script>
+(async () => {
+  const $ = (id) => document.getElementById(id);
+  // background film (assets/js/bgfilm.js: moving-picture stand-in where phones block video)
+  OC_BGFILM(document.getElementById('bgFilm'), 'gallery');
+
+  let items = [];
+  try { items = (await (await fetch('assets/data/gallery.json')).json()).items || []; } catch (e) { /* none */ }
+  const wall = $('wall');
+  if (!items.length) { wall.innerHTML = '<p class="empty">NO PHOTOS YET</p>'; $('playAll').hidden = true; return; }
+  // a new order every visit
+  for (let k = items.length - 1; k > 0; k--) { const j = Math.random() * (k + 1) | 0; [items[k], items[j]] = [items[j], items[k]]; }
+  // one tile of TV snow, shared by every picture
+  { const c = document.createElement('canvas'); c.width = 160; c.height = 90; const g = c.getContext('2d'), d = g.createImageData(160, 90);
+    for (let i = 0; i < d.data.length; i += 4) { const v = Math.random() * 255 | 0; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; }
+    g.putImageData(d, 0, 0); wall.style.setProperty('--noise', `url(${c.toDataURL()})`); }
+  const nv = items.filter((it) => it.type === 'video').length;
+  $('count').textContent = nv ? `${items.length - nv} PICTURES · ${nv} FILMS` : `${items.length} PICTURES`;
+  const pad = (n) => String(n).padStart(3, '0');
+
+  function play(b, cls, ms) { b.classList.remove('tune', 'glitch'); void b.offsetWidth; b.classList.add(cls); clearTimeout(b._t); b._t = setTimeout(() => b.classList.remove(cls), ms); }
+  // tune in when the picture first shows on screen, a little staggered so they don't all flip at once
+  let stagger = 0, staggerT = 0;
+  const tuneIn = (b) => {
+    const r = b.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) { tuneObs.observe(b); return; }
+    const delay = (stagger++ % 12) * 70; clearTimeout(staggerT); staggerT = setTimeout(() => { stagger = 0; }, 400);
+    setTimeout(() => play(b, 'tune', 950), delay);
+  };
+  const tuneObs = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { tuneObs.unobserve(e.target); tuneIn(e.target); } }));
+  const frag = document.createDocumentFragment();
+  items.forEach((it, i) => {
+    const b = document.createElement('button'); b.type = 'button';
+    b.setAttribute('aria-label', `Picture ${i + 1} of ${items.length}`);
+    const im = document.createElement('img');
+    im.alt = ''; im.loading = 'lazy'; im.decoding = 'async';
+    if (it.w && it.h) { im.width = it.w; im.height = it.h; im.style.aspectRatio = `${it.w} / ${it.h}`; }
+    im.draggable = false;
+    im.addEventListener('load', () => { im.classList.add('in'); tuneIn(b); }, { once: true });
+    im.src = it.thumb || it.src;
+    const n = document.createElement('span'); n.className = 'n'; n.textContent = pad(i + 1);
+    b.append(im, n);
+    if (it.type === 'video') { const f = document.createElement('span'); f.className = 'film'; f.textContent = '▶ FILM'; b.appendChild(f); b.setAttribute('aria-label', `Film ${i + 1} of ${items.length}`); }
+    b.addEventListener('click', () => OC_SLIDES.open({ list: items, start: i }));
+    b.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse' && !b.classList.contains('tune')) play(b, 'glitch', 460); });
+    frag.appendChild(b);
+  });
+  wall.appendChild(frag);
+  // no right-click save on the pictures
+  wall.addEventListener('contextmenu', (e) => e.preventDefault());
+  wall.addEventListener('dragstart', (e) => e.preventDefault());
+  $('playAll').addEventListener('click', () => OC_SLIDES.open({ list: items, shuffle: true }));
+})();
+</script>
+</body>
+</html>

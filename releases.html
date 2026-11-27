@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noimageindex, noai, noimageai">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RELEASES · ANIMUSCULT</title>
+<meta name="description" content="Every ANIMUSCULT release: singles and albums, from BLEED BETWEEN THE LINES to MONSTERS and HYPNOTOAD. OBSESSION MAGIC is out January 8.">
+<meta property="og:title" content="ANIMUSCULT · RELEASES">
+<meta property="og:image" content="/assets/releases/bleed-between-the-lines.webp">
+<meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/vhs.css">
+<style>
+  html { background: #050505; } body { background: transparent; }
+  /* backdrop: the release's wide photo, or its cover blurred; crossfades when you pick another */
+  .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: #050505; }
+  /* background: Eva's crabsmusic film (underwater graves, crabs), looped forward then back */
+  .bg video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(5,5,5,.25) 0%, rgba(5,5,5,.55) 50%, rgba(5,5,5,.85) 100%); }
+
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 120px clamp(16px, 5vw, 72px) 90px; }
+  .label { font-family: var(--osd); font-size: 20px; letter-spacing: .14em; color: var(--flame); margin: 0 0 10px; }
+  h1 { margin: 0 0 40px; font-weight: 600; font-size: clamp(48px, 8vw, 120px); line-height: .9; letter-spacing: .05em; text-shadow: 3px 0 var(--chroma-r), -3px 0 var(--chroma-b); }
+
+  .feature { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(24px, 4.5vw, 70px); align-items: center; }
+  .art { position: relative; aspect-ratio: 1; }
+  .art img { width: 100%; height: 100%; object-fit: cover; display: block; box-shadow: 0 0 0 1px rgba(235,229,217,.1), 0 0 80px rgba(255,30,20,.22), 0 40px 90px rgba(0,0,0,.7);
+             transition: opacity .35s; }
+  .art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255,255,255,.08), rgba(255,255,255,0) 35%); pointer-events: none; }
+  .art .no { position: absolute; top: 12px; left: 12px; z-index: 2; font-family: var(--osd); font-size: 20px; letter-spacing: .12em; color: #ffd9d1; padding: 2px 8px;
+             background: rgba(20,0,0,.72); border: 1px solid rgba(255,42,31,.5); text-shadow: 0 0 8px var(--flame); }
+  .info h2 { margin: 0; font-weight: 600; font-size: clamp(36px, 4.6vw, 70px); line-height: .98; letter-spacing: .03em; text-shadow: 2px 0 var(--chroma-r), -2px 0 var(--chroma-b); }
+  .info h2 em { display: block; font-weight: 500; font-size: .48em; letter-spacing: .14em; color: var(--bone-dim); margin-top: 10px; text-shadow: none; }
+  .meta { font-family: var(--osd); font-size: 21px; letter-spacing: .1em; color: var(--bone-dim); margin: 18px 0 22px; }
+  .embed { min-height: 152px; border-radius: 12px; overflow: hidden; background: rgba(20,0,0,.4); box-shadow: 0 0 0 1px rgba(255,42,31,.3), 0 0 30px rgba(255,30,20,.15); }
+  .embed iframe { display: block; width: 100%; border: 0; }
+  .listen { display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 22px; font-family: var(--osd); font-size: 21px; letter-spacing: .08em; }
+  .listen a { color: var(--bone-dim); text-decoration: none; border-bottom: 1px solid transparent; }
+  .listen a:hover { color: var(--bone); border-color: var(--flame); }
+
+  .row { list-style: none; margin: 60px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 26px 16px; }
+  .row .k { margin: 3px 0 0; font-family: var(--osd); font-size: 16px; letter-spacing: .1em; color: var(--bone-dim); }
+  /* OBSESSION MAGIC, coming soon: first in the row, opens its own page */
+  .row a.soon { display: block; text-decoration: none; color: inherit; }
+  .row a.soon .th { box-shadow: 0 0 0 1px rgba(255,42,31,.55), 0 0 26px rgba(255,42,31,.35); }
+  .row a.soon .n { color: #fff; background: rgba(160,0,0,.8); padding: 1px 6px; }
+  .row a.soon:hover img, .row a.soon:focus-visible img { transform: scale(1.05); filter: none; }
+  .row a.soon:focus-visible { outline: 1px solid var(--flame); outline-offset: 6px; }
+  .row button { width: 100%; text-align: left; display: block; padding: 0; }
+  .row .th { position: relative; aspect-ratio: 1; overflow: hidden; box-shadow: 0 0 0 1px rgba(235,229,217,.1), 0 14px 40px rgba(0,0,0,.6); }
+  .row img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s, filter .3s; filter: saturate(.8) brightness(.8); }
+  .row .n { position: absolute; left: 8px; top: 8px; font-family: var(--osd); font-size: 18px; letter-spacing: .1em; color: var(--flame-hot); text-shadow: 0 0 6px var(--flame), 0 0 2px #000; }
+  .row .t { margin: 10px 0 0; font-size: clamp(15px, 1.4vw, 19px); font-weight: 600; letter-spacing: .04em; line-height: 1.1; }
+  .row button:hover img, .row button:focus-visible img, .row button[aria-current="true"] img { transform: scale(1.05); filter: none; }
+  .row button[aria-current="true"] .th { box-shadow: 0 0 0 2px var(--flame), 0 0 26px rgba(255,42,31,.45); }
+  .row button:focus-visible { outline: 1px solid var(--flame); outline-offset: 6px; }
+
+  @media (max-width: 860px) {
+    .wrap { padding-top: 96px; }
+    .feature { grid-template-columns: 1fr; }
+    .art { max-width: 460px; }
+    .row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 12px; }
+    .row .t { font-size: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .row img, .art img { transition: none; } }
+</style>
+</head>
+<body>
+<script src="assets/js/nav.js"></script>
+<div class="bg" aria-hidden="true"><video id="bgFilm" muted loop playsinline autoplay preload="auto" poster="assets/video/releases-bg-poster.webp"></video></div>
+
+
+<main class="wrap">
+  <p class="label">CH 05</p>
+  <h1>RELEASES</h1>
+
+  <section class="feature" aria-live="polite">
+    <div class="art"><img id="art" alt=""><span class="no" id="no"></span></div>
+    <div class="info">
+      <h2 id="title"></h2>
+      <p class="meta" id="meta"></p>
+      <div class="embed" id="embed"></div>
+      <div class="listen" id="listen"></div>
+    </div>
+  </section>
+
+  <ul class="row" id="row" aria-label="Every release, newest first"></ul>
+</main>
+
+<script src="assets/js/vhs.js"></script>
+<script src="assets/js/bgfilm.js"></script>
+<script src="assets/js/site-music.js"></script>
+<script>
+(async () => {
+  let data; try { data = await (await fetch('assets/data/releases.json')).json(); } catch (e) { return; }
+  const R = data.releases;
+  const $ = (id) => document.getElementById(id);
+  // background film (assets/js/bgfilm.js: moving-picture stand-in where phones block video)
+  OC_BGFILM(document.getElementById('bgFilm'), 'releases');
+
+  // Spotify's official player (signed-in listeners hear full songs); the site song steps aside when it plays
+  let ctrl = null, apiReady = null;
+  const loadApi = () => apiReady || (apiReady = new Promise((res) => {
+    window.onSpotifyIframeApiReady = (API) => res(API);
+    const s = document.createElement('script'); s.src = 'https://open.spotify.com/embed/iframe-api/v1'; s.async = true; document.head.appendChild(s);
+  }));
+
+  async function pick(i, fromUser) {
+    const r = R[i];
+    $('art').style.opacity = 0;
+    setTimeout(() => { $('art').src = r.art; $('art').alt = `Cover of ${r.title} ${r.sub}`.trim(); $('art').style.opacity = 1; }, fromUser ? 180 : 0);
+    $('no').textContent = i === 0 ? 'NEWEST' : String(i + 1).padStart(2, '0');
+    $('title').textContent = r.title;
+    if (r.sub) { const em = document.createElement('em'); em.textContent = r.sub; $('title').appendChild(em); }
+    $('meta').textContent = `${r.kind} · ${r.year} · ANIMUSCULT`;
+    const L = $('listen'); L.innerHTML = '';
+    const add = (href, label) => { const a = document.createElement('a'); a.href = href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = label; L.appendChild(a); };
+    add(r.spotify, 'SPOTIFY'); if (r.soundcloud) add(r.soundcloud, 'SOUNDCLOUD');
+    // player
+    const API = await loadApi();
+    const uri = `spotify:album:${r.id}`;
+    if (ctrl) { ctrl.loadUri(uri); if (fromUser) ctrl.play(); }
+    else {
+      const host = document.createElement('div'); $('embed').appendChild(host);
+      API.createController(host, { uri, width: '100%', height: 152 }, (c) => {
+        ctrl = c;
+        c.addListener('playback_update', (e) => { if (!e.data.isPaused && window.OC_MUSIC) OC_MUSIC.yieldTo(); });
+      });
+    }
+    $('row').querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-current', String(j === i)));
+    try { history.replaceState(null, '', '#' + r.slug); } catch (e) { /* inside the shell */ }
+  }
+
+  // coming soon (hidden on its own once it is out: then add it to releases.json like the rest)
+  if (Date.now() < Date.parse('2027-01-08T08:00:00Z')) {
+    const li = document.createElement('li');
+    li.innerHTML = '<a class="soon" href="obsession-magic.html"><div class="th"><img alt="" src="assets/releases/obsession-magic.webp"><span class="n">JAN 8</span></div><p class="t">OBSESSION MAGIC</p><p class="k">COMING · PRE-SAVE</p></a>';
+    $('row').appendChild(li);
+  }
+  R.forEach((r, i) => {
+    const li = document.createElement('li');
+    li.innerHTML = '<button type="button"><div class="th"><img alt="" loading="lazy"><span class="n"></span></div><p class="t"></p><p class="k"></p></button>';
+    li.querySelector('img').src = r.art;
+    li.querySelector('.n').textContent = i === 0 ? 'NEWEST' : String(i + 1).padStart(2, '0');
+    li.querySelector('.t').textContent = r.title;
+    li.querySelector('.k').textContent = `${r.kind} · ${r.year}`;
+    li.querySelector('button').setAttribute('aria-label', `${r.title} ${r.sub}`.trim());
+    li.querySelector('button').addEventListener('click', () => { pick(i, true); scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); });
+    $('row').appendChild(li);
+  });
+  const fromHash = R.findIndex((r) => r.slug === location.hash.slice(1));
+  pick(fromHash >= 0 ? fromHash : 0, false);
+})();
+</script>
+</body>
+</html>

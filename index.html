@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noimageindex, noai, noimageai">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ANIMUSCULT</title>
+<meta name="description" content="ANIMUSCULT: a new universe for you to explore. Music, films, characters and clothes.">
+<meta property="og:title" content="ANIMUSCULT">
+<meta property="og:description" content="A new universe for you to explore.">
+<meta property="og:image" content="/assets/video/entry-monsters-poster.webp">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=VT323&display=swap" rel="stylesheet">
+<script>
+// Intro films. Each visit plays a different one than last time.
+// To add one: put entry-NAME.mp4, entry-NAME-lite.mp4 and entry-NAME-poster.webp in assets/video and add NAME here.
+// To see a certain one: index.html?film=car
+window.OC_FILMS = ['monsters', 'car'];
+(() => {
+  const F = window.OC_FILMS;
+  let last = null; try { last = localStorage.getItem('oc-film'); } catch (e) {}
+  const asked = new URLSearchParams(location.search).get('film');
+  const pool = F.length > 1 ? F.filter((n) => n !== last) : F;
+  const pick = F.includes(asked) ? asked : pool[Math.floor(Math.random() * pool.length)];
+  try { localStorage.setItem('oc-film', pick); } catch (e) {}
+  window.OC_FILM = pick;
+  const poster = `assets/video/entry-${pick}-poster.webp`;
+  document.documentElement.style.setProperty('--poster', `url(${poster})`);
+  const l = document.createElement('link'); l.rel = 'preload'; l.as = 'image'; l.href = poster; document.head.appendChild(l);
+})();
+</script>
+<link rel="stylesheet" href="assets/css/vhs.css">
+<style>
+  body { overflow: hidden; height: 100dvh; }
+  main { position: fixed; inset: 0; display: grid; place-items: center; background: var(--ink); }
+
+  .film {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 45%;
+    background: var(--ink) var(--poster) center / cover no-repeat;
+  }
+  /* soft chroma ghost of the film, offset like a worn tape */
+  .ghost { mix-blend-mode: screen; opacity: .16; transform: translateX(3px); filter: hue-rotate(160deg) saturate(2); }
+
+  .enter-wrap {
+    position: absolute; left: 0; right: 0; bottom: max(3.5vh, 26px);
+    display: flex; flex-direction: column; align-items: center; gap: 14px; z-index: 20;
+  }
+  .enter {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(22px, 2.6vw, 34px);
+    letter-spacing: .5em; padding: 14px 10px 14px calc(10px + .5em); /* balances the tracking */
+    color: var(--bone); position: relative; text-decoration: none;
+    text-shadow: 0 0 18px rgba(0,0,0,.8);
+    transition: color .25s, text-shadow .25s, letter-spacing .4s;
+  }
+  .enter::after {
+    content: ""; position: absolute; left: 50%; bottom: 6px; height: 1px; width: 0;
+    background: var(--flame); box-shadow: 0 0 10px var(--flame); transition: width .35s, left .35s;
+  }
+  .enter:hover, .enter:focus-visible {
+    color: #fff; letter-spacing: .58em;
+    text-shadow: 2px 0 var(--chroma-r), -2px 0 var(--chroma-b), 0 0 22px rgba(255,91,53,.45);
+  }
+  .enter:hover::after, .enter:focus-visible::after { width: 100%; left: 0; }
+  .enter:focus-visible { outline: none; }
+  .hint { font-family: var(--osd); font-size: 18px; letter-spacing: .12em; color: var(--bone-faint); }
+
+  /* Phones held upright: show the whole letterboxed frame so the title isn't cut */
+  @media (orientation: portrait) {
+    .film { object-fit: contain; background-size: contain; }
+    .enter-wrap { bottom: max(16vh, 96px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ghost { display: none; } }
+  /* after ENTER: every page shows in this frame, so the song keeps playing between pages */
+  #frame { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; z-index: 50; background: #050505; }
+  body.entered main, body.entered .osd { display: none; }
+</style>
+</head>
+<body data-shell="1">
+<main>
+  <video class="film" id="film" autoplay muted loop playsinline preload="auto"
+         aria-label="ANIMUSCULT film"></video>
+  <video class="film ghost" id="ghost" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+
+  <div class="enter-wrap">
+    <a class="enter" href="home.html" id="enter">ENTER</a>
+  </div>
+</main>
+
+<div class="osd osd-tl" aria-hidden="true"><span class="blink">▶</span> PLAY</div>
+<div class="osd osd-tr" aria-hidden="true">CH 00</div>
+<div class="osd osd-bl" aria-hidden="true">SP <span id="tc">0:00:00:00</span></div>
+<div class="osd osd-br"><button id="sound" type="button" aria-pressed="false">SOUND OFF</button></div>
+
+<script src="assets/js/vhs.js"></script>
+<script src="assets/js/site-music.js"></script>
+<script>
+(() => {
+  const film = document.getElementById('film');
+  const ghost = document.getElementById('ghost');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Lighter file on small screens and slow connections
+  const small = Math.min(screen.width, screen.height) < 700 || (navigator.connection && navigator.connection.saveData);
+  const src = `assets/video/entry-${window.OC_FILM}${small ? '-lite' : ''}.mp4`;
+  film.poster = `assets/video/entry-${window.OC_FILM}-poster.webp`;
+  film.src = src;
+  if (!reduced && !small) { ghost.src = src; } else { ghost.remove(); }
+  film.muted = true; film.defaultMuted = true; film.playsInline = true; film.setAttribute('webkit-playsinline', '');
+  // The film plays for everyone; Reduce Motion only drops the extra effects.
+  // Some browsers drop the first autoplay, so keep nudging it until it runs, and again on any first touch or key.
+  // iPhones in Low Power Mode, and links opened inside apps (Instagram, TikTok, Messages), block video:
+  // there the film would sit still and jump to full screen when tapped. Then a silent moving picture of
+  // the same film (entry-NAME-loop.webp) takes its place.
+  let looped = false;
+  function useLoop() {
+    if (looped) return; looped = true; clearInterval(nudge);
+    const img = new Image();
+    img.className = 'film'; img.alt = ''; img.setAttribute('aria-hidden', 'true');
+    img.src = `assets/video/entry-${window.OC_FILM}-loop.webp`;
+    img.onload = () => { film.pause(); film.replaceWith(img); if (ghost.isConnected) ghost.remove(); };
+    document.getElementById('sound').parentElement.hidden = true; // no film sound to turn on here
+  }
+  const kick = () => { if (!looped && film.paused) film.play().catch((e) => { if (e && e.name === 'NotAllowedError') useLoop(); }); };
+  film.addEventListener('canplay', kick);
+  const nudge = setInterval(() => { kick(); if (!film.paused && film.currentTime > 0.2) clearInterval(nudge); }, 700);
+  // loaded but still not moving after a few seconds: blocked without saying so
+  setTimeout(() => { if (film.readyState >= 2 && (film.paused || film.currentTime < 0.1)) useLoop(); }, 4000);
+  // a tap on a touch screen never starts the film itself (that's what made it jump to full screen)
+  if (!matchMedia('(pointer: coarse)').matches) ['pointerdown', 'keydown'].forEach((ev) => addEventListener(ev, kick, { once: true, passive: true }));
+  kick();
+
+  // keep the ghost in step with the film
+  if (ghost.isConnected) setInterval(() => { if (Math.abs(ghost.currentTime - film.currentTime) > .08) ghost.currentTime = film.currentTime; }, 1000);
+
+  // VHS timecode from the film position
+  const tc = document.getElementById('tc');
+  const pad = (n) => String(n).padStart(2, '0');
+  const tick = () => {
+    const t = looped ? (performance.now() / 1000) % 15 : (film.currentTime || 0);
+    tc.textContent = `0:00:${pad(Math.floor(t))}:${pad(Math.floor((t % 1) * 24))}`;
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+
+  // Sound toggle (browsers only allow sound after a tap)
+  const btn = document.getElementById('sound');
+  btn.addEventListener('click', () => {
+    film.muted = !film.muted;
+    if (!film.muted) film.play();
+    btn.textContent = film.muted ? 'SOUND OFF' : 'SOUND ON';
+    btn.setAttribute('aria-pressed', String(!film.muted));
+  });
+
+  // ENTER: the song starts (softly, then louder) and the site opens in a frame so the song carries across pages
+  const PAGES = ['home', 'machine', 'videos', 'gallery', 'releases', 'clothes', 'obsession-magic'];
+  const wanted = location.hash.slice(1);
+  const first = (PAGES.includes(wanted) ? wanted : 'home') + '.html';
+  let entered = false;
+  if (window.OC_SHELL) OC_SHELL.prepare();
+  function enterSite() {
+    if (entered) return; entered = true;
+    film.muted = true;
+    if (window.OC_SHELL) OC_SHELL.begin(); // inside the click, so the browser allows sound
+    document.body.classList.add('is-leaving');
+    setTimeout(() => {
+      const f = document.createElement('iframe'); f.id = 'frame'; f.title = 'ANIMUSCULT';
+      f.allow = 'autoplay; fullscreen; encrypted-media; picture-in-picture';
+      f.src = first; document.body.appendChild(f);
+      f.addEventListener('load', () => {
+        document.body.classList.add('entered'); document.body.classList.remove('is-leaving');
+        film.pause(); if (ghost.isConnected) ghost.pause();
+        f.focus();
+      }, { once: true });
+    }, reduced ? 380 : 720);
+  }
+  document.getElementById('enter').addEventListener('click', (e) => { e.preventDefault(); enterSite(); });
+  // The Enter key works anywhere on the page
+  addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (document.activeElement === document.body || document.activeElement.id === 'enter')) { e.preventDefault(); enterSite(); }
+  });
+})();
+</script>
+</body>
+</html>

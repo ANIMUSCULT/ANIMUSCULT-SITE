@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noimageindex, noai, noimageai">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VIDEOS · ANIMUSCULT</title>
+<meta name="description" content="ANIMUSCULT music videos and films: PARASITE, MONSTERS, ENEMY, OUROBOROS, SWINE, QT DIE and more.">
+<meta property="og:title" content="ANIMUSCULT VIDEOS">
+<meta property="og:image" content="/assets/img/videos-eclipse-worm.webp">
+<meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://i.ytimg.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/vhs.css">
+<style>
+  html { background: #050505; } body { background: transparent; }
+  /* background: the eclipse photo for now; a background film can replace it (put a <video> in .bg) */
+  .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
+  .bg img, .bg video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; animation: drift 40s ease-in-out infinite alternate; }
+  @keyframes drift { from { transform: scale(1.02); } to { transform: scale(1.08); } }
+  .bg::before { content: ""; position: absolute; inset: 0; z-index: 1; mix-blend-mode: screen; pointer-events: none;
+    background: radial-gradient(circle at 51% 34%, rgba(255,30,60,.35), rgba(255,0,0,0) 14%); animation: breathe 6s ease-in-out infinite; }
+  @keyframes breathe { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+  .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(5,5,5,.1) 0%, rgba(5,5,5,.35) 45%, rgba(5,5,5,.82) 100%); }
+
+
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 72px); }
+  header.head { padding-top: 120px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px 40px; margin-bottom: 26px; }
+  .label { font-family: var(--osd); font-size: 20px; letter-spacing: .14em; color: var(--flame); margin: 0 0 10px; }
+  h1 { margin: 0; font-weight: 600; font-size: clamp(56px, 10vw, 150px); line-height: .88; letter-spacing: .06em; text-shadow: 3px 0 var(--chroma-r), -3px 0 var(--chroma-b); }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .filters button { font-family: var(--osd); font-size: 20px; letter-spacing: .1em; padding: 7px 12px; border: 1px solid rgba(255,42,31,.35); color: var(--bone-dim); min-height: 40px; }
+  .filters button:hover { color: var(--bone); }
+  .filters button[aria-pressed="true"] { background: rgba(255,42,31,.18); color: #fff; border-color: var(--flame); box-shadow: 0 0 14px rgba(255,42,31,.3); }
+
+  /* the screen */
+  .screen { position: relative; aspect-ratio: 16 / 9; background: #000; border: 1px solid rgba(255,42,31,.35);
+            box-shadow: 0 0 0 6px rgba(10,0,0,.7), 0 0 60px rgba(255,30,20,.18), 0 30px 80px rgba(0,0,0,.7); overflow: hidden; }
+  .screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .screen .cover { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; display: block; }
+  .screen .cover img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.9) contrast(1.05); }
+  .screen .cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,0,0,.85), rgba(5,0,0,0) 55%),
+    repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.18) 3px, rgba(0,0,0,0) 4px); }
+  .screen .play { position: absolute; left: 50%; top: 50%; z-index: 2; transform: translate(-50%, -50%); width: 96px; height: 96px; border-radius: 50%;
+    border: 1px solid var(--flame); background: rgba(40,0,0,.55); box-shadow: 0 0 30px rgba(255,42,31,.45); display: grid; place-items: center; transition: transform .2s, background .2s; }
+  .screen .play::before { content: ""; border-left: 26px solid #ffd9d1; border-top: 16px solid transparent; border-bottom: 16px solid transparent; margin-left: 8px; filter: drop-shadow(0 0 8px var(--flame)); }
+  .screen .cover:hover .play, .screen .cover:focus-visible .play { transform: translate(-50%, -50%) scale(1.08); background: rgba(255,42,31,.25); }
+  .screen .osd-in { position: absolute; z-index: 2; left: 18px; bottom: 14px; right: 18px; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; pointer-events: none; }
+  .screen .now { font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 3.6vw, 52px); letter-spacing: .05em; line-height: 1; text-shadow: 2px 0 var(--chroma-r), -2px 0 var(--chroma-b); }
+  .screen .now small { display: block; font-family: var(--osd); font-weight: 400; font-size: 19px; letter-spacing: .12em; color: var(--bone-dim); margin-top: 6px; text-shadow: none; }
+  .screen .tc { font-family: var(--osd); font-size: 20px; color: var(--flame-hot); letter-spacing: .1em; text-shadow: 0 0 8px var(--flame); white-space: nowrap; }
+
+  /* tape shelf */
+  .shelf { list-style: none; margin: 34px 0 0; padding: 0 0 90px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px 18px; }
+  .tape button { width: 100%; text-align: left; display: block; padding: 0; }
+  .tape .th { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #0d0b0b; box-shadow: 0 0 0 1px rgba(235,229,217,.1), 0 14px 40px rgba(0,0,0,.6); }
+  .tape .th img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s, filter .3s; filter: saturate(.85) brightness(.9); }
+  .tape .th::after { content: ""; position: absolute; inset: 0; opacity: 0; transition: opacity .3s; background: repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.25) 3px, rgba(0,0,0,0) 4px), radial-gradient(ellipse at center, rgba(255,30,20,0) 50%, rgba(255,30,20,.3)); }
+  .tape .len { position: absolute; right: 8px; bottom: 8px; font-family: var(--osd); font-size: 18px; padding: 0 6px; background: rgba(10,0,0,.8); color: #ffd9d1; border: 1px solid rgba(255,42,31,.45); }
+  .tape .no { position: absolute; left: 8px; top: 8px; font-family: var(--osd); font-size: 17px; letter-spacing: .1em; color: var(--flame-hot); text-shadow: 0 0 6px var(--flame); }
+  .tape .t { margin: 10px 0 2px; font-size: clamp(18px, 1.6vw, 22px); font-weight: 600; letter-spacing: .04em; line-height: 1.1; }
+  .tape .s { font-family: var(--osd); font-size: 17px; letter-spacing: .1em; color: var(--bone-faint); }
+  .tape button:hover .th img, .tape button:focus-visible .th img { transform: scale(1.05); filter: saturate(1.1) brightness(1); }
+  .tape button:hover .th::after, .tape button:focus-visible .th::after { opacity: 1; }
+  .tape button:focus-visible { outline: 1px solid var(--flame); outline-offset: 6px; }
+  .tape button[aria-current="true"] .th { box-shadow: 0 0 0 2px var(--flame), 0 0 26px rgba(255,42,31,.45); }
+  .tape button[aria-current="true"] .no::after { content: " ▶ PLAYING"; }
+  .tape[hidden] { display: none; }
+  .foot { font-family: var(--osd); font-size: 20px; letter-spacing: .06em; color: var(--bone-faint); padding-bottom: 60px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  .foot a { color: var(--bone-dim); } .foot a:hover { color: var(--flame-hot); }
+
+  /* channel tabs: YOUTUBE / SHORTS / TIKTOK. Hidden tabs keep what's loaded, so TikTok stays open when you come back */
+  .tabs { display: flex; gap: 0; margin: 0 0 28px; border-bottom: 1px solid rgba(255,42,31,.35); overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs button { font-family: var(--osd); font-size: clamp(20px, 2.4vw, 28px); letter-spacing: .14em; color: var(--bone-dim); padding: 12px clamp(14px, 2.4vw, 28px); min-height: 52px; white-space: nowrap;
+    border: 1px solid transparent; border-bottom: 0; margin-bottom: -1px; position: relative; }
+  .tabs button small { font-size: .62em; letter-spacing: .12em; color: var(--flame); margin-right: 8px; }
+  .tabs button:hover { color: var(--bone); }
+  .tabs button[aria-selected="true"] { color: #fff; background: rgba(255,42,31,.14); border-color: rgba(255,42,31,.55); text-shadow: 0 0 10px var(--flame); }
+  .tabs button[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--flame); box-shadow: 0 0 12px var(--flame); }
+  .tabs button:focus-visible { outline: 1px solid var(--flame); outline-offset: -4px; }
+  [role="tabpanel"][hidden] { display: none; }
+  .tt-wait { font-family: var(--osd); font-size: 22px; letter-spacing: .14em; color: var(--bone-faint); align-self: center; }
+  /* section headings */
+  .sec { display: flex; align-items: baseline; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin: 0 0 18px; }
+  .sec h2 { margin: 0; font-weight: 600; font-size: clamp(34px, 5vw, 64px); letter-spacing: .06em; line-height: 1; text-shadow: 2px 0 var(--chroma-r), -2px 0 var(--chroma-b); }
+  .sec .label { margin: 0; }
+  .sec a { font-family: var(--osd); font-size: 20px; letter-spacing: .1em; color: var(--bone-dim); text-decoration: none; }
+  .sec a:hover { color: var(--flame-hot); }
+  .feat-tag { position: absolute; z-index: 3; left: 18px; top: 14px; font-family: var(--osd); font-size: 20px; letter-spacing: .14em; color: #ffd9d1;
+    padding: 2px 10px; background: rgba(40,0,0,.7); border: 1px solid var(--flame); text-shadow: 0 0 8px var(--flame); pointer-events: none; }
+
+  /* shorts: upright tapes */
+  .shorts { list-style: none; margin: 0; padding: 0 0 90px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
+  .short .frame { position: relative; aspect-ratio: 9 / 16; overflow: hidden; background: #0d0b0b; border: 1px solid rgba(255,42,31,.3);
+    box-shadow: 0 0 0 4px rgba(10,0,0,.7), 0 14px 40px rgba(0,0,0,.6); }
+  .short .frame > button { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; display: block; }
+  .short img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.85) brightness(.85); transition: transform .5s, filter .3s; }
+  .short .frame > button::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,0,0,.85), rgba(5,0,0,0) 45%),
+    repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.2) 3px, rgba(0,0,0,0) 4px); }
+  .short .pl { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 62px; height: 62px; border-radius: 50%; border: 1px solid var(--flame);
+    background: rgba(40,0,0,.55); box-shadow: 0 0 22px rgba(255,42,31,.45); display: grid; place-items: center; opacity: .85; transition: opacity .2s, transform .2s; }
+  .short .pl::before { content: ""; border-left: 18px solid #ffd9d1; border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 5px; }
+  .short .cap { position: absolute; z-index: 2; left: 12px; right: 12px; bottom: 10px; pointer-events: none; }
+  .short .cap b { display: block; font-weight: 600; font-size: clamp(18px, 1.6vw, 24px); letter-spacing: .04em; line-height: 1.05; }
+  .short .cap span { font-family: var(--osd); font-size: 16px; letter-spacing: .1em; color: var(--bone-dim); }
+  .short .ch { position: absolute; z-index: 2; left: 10px; top: 8px; font-family: var(--osd); font-size: 16px; letter-spacing: .1em; color: var(--flame-hot); text-shadow: 0 0 6px var(--flame); }
+  .short .frame > button:hover img, .short .frame > button:focus-visible img { transform: scale(1.05); filter: saturate(1.1) brightness(1); }
+  .short .frame > button:hover .pl, .short .frame > button:focus-visible .pl { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+  .short .frame > button:focus-visible { outline: 1px solid var(--flame); outline-offset: -3px; }
+  .short iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* TikTok */
+  .tt { padding: 0 0 90px; }
+    border: 1px solid rgba(255,42,31,.35); background: rgba(12,0,0,.6); box-shadow: 0 0 0 6px rgba(10,0,0,.7), 0 0 40px rgba(255,30,20,.12); }
+  .tt-feed { display: flex; justify-content: center; min-height: 200px; }
+  .tt-feed iframe { width: 100%; max-width: 780px; height: min(78vh, 760px); border: 0; background: #fff;
+    box-shadow: 0 0 0 1px rgba(255,42,31,.45), 0 0 0 6px rgba(10,0,0,.8), 0 0 40px rgba(255,30,20,.18); }
+  @media (max-width: 760px) { .tt-feed iframe { height: min(74vh, 640px); } }
+
+  @media (max-width: 1000px) { .shorts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 760px) {
+    .shorts { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 calc(-1 * clamp(16px, 5vw, 72px)); padding-left: clamp(16px, 5vw, 72px); padding-right: clamp(16px, 5vw, 72px); scrollbar-width: none; }
+    .shorts::-webkit-scrollbar { display: none; }
+    .short { flex: 0 0 62vw; scroll-snap-align: center; }
+  }
+  @media (max-width: 1000px) { .shelf { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 760px) {
+    .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; }
+    header.head { padding-top: 96px; }
+    .screen .play { width: 70px; height: 70px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .bg img, .bg video, .bg::before { animation: none; } }
+</style>
+</head>
+<body>
+<script src="assets/js/nav.js"></script>
+<div class="bg" aria-hidden="true"><img src="assets/img/videos-eclipse-worm.webp" alt="" fetchpriority="high"></div>
+
+
+<main class="wrap">
+  <header class="head">
+    <div><p class="label">CH 03</p><h1>VIDEOS</h1></div>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Channels">
+    <button type="button" role="tab" id="tab-yt" aria-controls="p-yt" data-t="yt"><small>CH1</small>YOUTUBE</button>
+    <button type="button" role="tab" id="tab-shorts" aria-controls="p-shorts" data-t="shorts"><small>CH2</small>SHORTS</button>
+    <button type="button" role="tab" id="tab-tiktok" aria-controls="p-tiktok" data-t="tiktok"><small>CH3</small>TIKTOK</button>
+  </div>
+
+  <div role="tabpanel" id="p-yt" aria-labelledby="tab-yt">
+    <div class="filters" role="group" aria-label="Filter" style="margin-bottom:18px">
+      <button type="button" data-f="all" aria-pressed="true">ALL</button>
+      <button type="button" data-f="video" aria-pressed="false">MUSIC VIDEOS</button>
+      <button type="button" data-f="film" aria-pressed="false">FILMS</button>
+      <button type="button" data-f="long" aria-pressed="false">LONG PLAY</button>
+    </div>
+  <div class="screen" id="screen"></div>
+  <ul class="shelf" id="shelf"></ul>
+  </div>
+
+  <section role="tabpanel" id="p-shorts" aria-labelledby="tab-shorts" hidden>
+    <div class="sec"><div><p class="label">VERTICAL</p><h2 id="shortsH">SHORTS</h2></div><a href="https://www.youtube.com/@AnimusCultOfficial/shorts" rel="noopener" target="_blank">ALL SHORTS ON YOUTUBE ▶</a></div>
+    <ul class="shorts" id="shorts"></ul>
+  </section>
+
+  <section class="tt" role="tabpanel" id="p-tiktok" aria-labelledby="tab-tiktok" hidden>
+    <div class="sec"><div><p class="label">LIVE FEED</p><h2 id="ttH">TIKTOK</h2></div><a id="ttLink" href="https://www.tiktok.com/@animuscult" rel="noopener" target="_blank">@ANIMUSCULT ON TIKTOK ▶</a></div>
+    <div class="tt-feed" id="ttFeed"><span class="tt-wait">TUNING IN…</span></div>
+  </section>
+
+  <div class="foot"><span>PLAYS ON YOUTUBE · VIEWS COUNT ON THE CHANNEL</span><a href="https://www.youtube.com/@AnimusCultOfficial" rel="noopener" target="_blank">YOUTUBE CHANNEL ▶</a></div>
+</main>
+
+<script src="assets/js/vhs.js"></script>
+<script src="assets/js/site-music.js"></script>
+<script>
+(async () => {
+  const screen = document.getElementById('screen'), shelf = document.getElementById('shelf');
+  const thumb = (id, hi) => `https://i.ytimg.com/vi/${id}/${hi ? 'maxresdefault' : 'hqdefault'}.jpg`;
+  // maxresdefault doesn't exist for every video; fall back to hqdefault
+  // (YouTube answers a missing one with a tiny grey placeholder, so check the size too)
+  const safeImg = (img, id, hi) => {
+    const fall = () => { img.onerror = img.onload = null; img.src = thumb(id, false); };
+    img.onerror = fall; img.onload = () => { if (hi && img.naturalWidth <= 120) fall(); };
+    img.src = thumb(id, hi);
+  };
+  let data; try { data = await (await fetch('assets/data/videos.json')).json(); } catch (e) { return; }
+  const V = data.videos;
+  let current = -1;
+
+  // The YouTube player only loads when someone presses play (keeps the page fast; no YouTube cookies before that)
+  function show(i, autoplay) {
+    current = i; const v = V[i];
+    screen.innerHTML = '';
+    if (autoplay) {
+      if (window.OC_MUSIC) OC_MUSIC.yieldTo(); // the site song steps aside for the video
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0&modestbranding=1&playsinline=1&color=white`;
+      f.title = v.title; f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+      screen.appendChild(f);
+    } else {
+      const b = document.createElement('button'); b.className = 'cover'; b.type = 'button'; b.setAttribute('aria-label', 'Play ' + v.title);
+      b.innerHTML = '<img alt=""><span class="play" aria-hidden="true"></span>';
+      safeImg(b.querySelector('img'), v.id, true);
+      b.addEventListener('click', () => show(i, true));
+      screen.appendChild(b);
+      const o = document.createElement('div'); o.className = 'osd-in';
+      o.innerHTML = '<div class="now"></div><div class="tc"></div>';
+      o.querySelector('.now').textContent = v.title; const sm = document.createElement('small'); sm.textContent = v.sub; o.querySelector('.now').appendChild(sm);
+      o.querySelector('.tc').textContent = 'TAPE ' + String(i + 1).padStart(2, '0') + ' · ' + v.len;
+      screen.appendChild(o);
+      if (v.id === data.featured) { const t = document.createElement('span'); t.className = 'feat-tag'; t.textContent = '★ FEATURE'; screen.appendChild(t); }
+    }
+    shelf.querySelectorAll('.tape button').forEach((b, j) => b.setAttribute('aria-current', String(j === i)));
+  }
+
+  V.forEach((v, i) => {
+    const li = document.createElement('li'); li.className = 'tape'; li.dataset.k = v.kind;
+    li.innerHTML = '<button type="button"><div class="th"><img alt="" loading="lazy" decoding="async"><span class="no"></span><span class="len"></span></div><p class="t"></p><p class="s"></p></button>';
+    safeImg(li.querySelector('img'), v.id, false);
+    li.querySelector('.no').textContent = 'TAPE ' + String(i + 1).padStart(2, '0');
+    li.querySelector('.len').textContent = v.len;
+    li.querySelector('.t').textContent = v.title; li.querySelector('.s').textContent = v.sub;
+    li.querySelector('button').setAttribute('aria-label', `Play ${v.title}, ${v.sub}, ${v.len}`);
+    li.querySelector('button').addEventListener('click', () => { show(i, true); screen.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' }); });
+    shelf.appendChild(li);
+  });
+
+  document.querySelectorAll('.filters button').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('.filters button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    shelf.querySelectorAll('.tape').forEach((li) => { li.hidden = b.dataset.f !== 'all' && li.dataset.k !== b.dataset.f; });
+  }));
+
+  // open on a tape from the link (#id), or the featured one (SWINE), or the newest
+  const fromHash = V.findIndex((v) => location.hash.slice(1) === v.id);
+  const feat = V.findIndex((v) => v.id === data.featured);
+  show(fromHash >= 0 ? fromHash : feat >= 0 ? feat : 0, false);
+
+  // SHORTS: each plays right where it is when pressed
+  const shortsEl = document.getElementById('shorts');
+  (data.shorts || []).forEach((v, i) => {
+    const li = document.createElement('li'); li.className = 'short';
+    li.innerHTML = '<div class="frame"><button type="button"><img alt="" loading="lazy" decoding="async"><span class="ch"></span><span class="pl" aria-hidden="true"></span><span class="cap"><b></b><span></span></span></button></div>';
+    const img = li.querySelector('img');
+    img.onerror = () => { img.onerror = null; img.src = `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`; };
+    img.src = `https://i.ytimg.com/vi/${v.id}/oar2.jpg`;
+    li.querySelector('.ch').textContent = 'SHORT ' + String(i + 1).padStart(2, '0');
+    li.querySelector('.cap b').textContent = v.title; li.querySelector('.cap span').textContent = v.sub;
+    const btn = li.querySelector('button'); btn.setAttribute('aria-label', `Play ${v.title}, ${v.sub}`);
+    btn.addEventListener('click', () => {
+      // only one short plays at a time
+      shortsEl.querySelectorAll('iframe').forEach((f) => f.closest('.short').dispatchEvent(new Event('reset')));
+      if (window.OC_MUSIC) OC_MUSIC.yieldTo();
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=${v.id}`;
+      f.title = v.title; f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+      btn.hidden = true; li.querySelector('.frame').appendChild(f);
+    });
+    li.addEventListener('reset', () => { const f = li.querySelector('iframe'); if (f) f.remove(); btn.hidden = false; });
+    shortsEl.appendChild(li);
+  });
+
+  // TIKTOK: TikTok's own profile player. It loads the first time the TIKTOK tab opens (no TikTok cookies before that) and then stays loaded
+  const tt = data.tiktok || 'animuscult';
+  document.getElementById('ttLink').href = `https://www.tiktok.com/@${tt}`;
+  const loadTT = () => {
+    const feed = document.getElementById('ttFeed'); if (feed.querySelector('iframe')) return;
+    const f = document.createElement('iframe');
+    f.src = `https://www.tiktok.com/embed/@${tt}`; f.title = `@${tt} on TikTok`;
+    f.allow = 'autoplay; encrypted-media; fullscreen'; f.allowFullscreen = true;
+    feed.innerHTML = ''; feed.appendChild(f);
+  };
+
+  // TABS: YOUTUBE / SHORTS / TIKTOK. Remembers the last one; #shorts or #tiktok in the link opens that tab.
+  // Leaving a tab stops its YouTube video so nothing plays out of sight. TikTok stays open.
+  const tabs = [...document.querySelectorAll('.tabs [role="tab"]')];
+  function pick(t, focus) {
+    const was = tabs.find((b) => b.getAttribute('aria-selected') === 'true');
+    tabs.forEach((b) => { const on = b.dataset.t === t; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; document.getElementById('p-' + b.dataset.t).hidden = !on; if (on && focus) b.focus(); });
+    if (was && was.dataset.t !== t) {
+      if (was.dataset.t === 'yt' && screen.querySelector('iframe')) { show(current, false); if (window.OC_MUSIC) OC_MUSIC.resume(); }
+      if (was.dataset.t === 'shorts' && shortsEl.querySelector('iframe')) { shortsEl.querySelectorAll('.short').forEach((li) => li.dispatchEvent(new Event('reset'))); if (window.OC_MUSIC) OC_MUSIC.resume(); }
+    }
+    if (t === 'tiktok') loadTT();
+    try { localStorage.setItem('oc-vtab', t); } catch (e) { /* fine */ }
+  }
+  tabs.forEach((b, k) => {
+    b.addEventListener('click', () => { pick(b.dataset.t); history.replaceState(null, '', b.dataset.t === 'yt' ? location.pathname : '#' + b.dataset.t); });
+    b.addEventListener('keydown', (e) => { const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (d) { e.preventDefault(); const n = tabs[(k + d + tabs.length) % tabs.length]; pick(n.dataset.t, true); } });
+  });
+  const h = location.hash.slice(1);
+  let first = ['shorts', 'tiktok'].includes(h) ? h : fromHash >= 0 ? 'yt' : null;
+  if (!first) { try { first = localStorage.getItem('oc-vtab'); } catch (e) { /* fine */ } }
+  pick(['yt', 'shorts', 'tiktok'].includes(first) ? first : 'yt');
+})();
+</script>
+</body>
+</html>

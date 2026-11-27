@@ -1,0 +1,46 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Hook,Georgia,82,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,1,0,0,0,100,100,2,0,1,6,4,8,60,60,330,1
+Style: Cap,Georgia,62,&H00FFFFFF,&H00FFFFFF,&H00000000,&H80000000,1,0,0,0,100,100,1,0,1,5,2,2,70,70,560,1
+Style: Tag,Georgia,40,&H40FFFFFF,&H00FFFFFF,&H00000000,&H00000000,1,0,0,0,100,100,6,0,1,3,0,8,60,60,210,1
+Style: End,Georgia,84,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,1,0,0,0,100,100,3,0,1,6,4,5,60,60,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 2,0:00:00.00,0:00:02.60,Hook,,0,0,0,,{\fad(80,150)\t(0,250,\fscx106\fscy106)}THEY'RE FEASTING\NON THE KING
+Dialogue: 1,0:00:00.00,0:02:00.08,Tag,,0,0,0,,SWINE · PART 2 OF 8
+Dialogue: 0,0:00:04.54,0:00:08.76,Cap,,0,0,0,,NOW WE WILL CONSUME\NHIS MAJESTY'S
+Dialogue: 0,0:00:08.76,0:00:09.55,Cap,,0,0,0,,ESSENCE.
+Dialogue: 0,0:00:30.91,0:00:32.26,Cap,,0,0,0,,LOOK AT HIM.
+Dialogue: 0,0:00:33.07,0:00:34.48,Cap,,0,0,0,,A DEATH ADDICT.
+Dialogue: 0,0:00:41.46,0:00:43.18,Cap,,0,0,0,,SAVE SOME FOR THE REST\NOF
+Dialogue: 0,0:00:43.18,0:00:44.37,Cap,,0,0,0,,US, FIEND.
+Dialogue: 0,0:00:46.29,0:00:47.61,Cap,,0,0,0,,OOH, I FIND THE IDEA\NOF
+Dialogue: 0,0:00:47.61,0:00:49.50,Cap,,0,0,0,,DEATH ADDICTION QUITE\NTITILLATING.
+Dialogue: 0,0:00:49.67,0:00:51.87,Cap,,0,0,0,,EDGING ONESELF TO THE\NBRINK ONLY
+Dialogue: 0,0:00:51.87,0:00:53.11,Cap,,0,0,0,,TO BE TORN FROM THE\NABYSS
+Dialogue: 0,0:00:53.11,0:00:54.56,Cap,,0,0,0,,AT THE VERY LAST\NMOMENT.
+Dialogue: 0,0:00:55.05,0:00:56.50,Cap,,0,0,0,,A REBIRTH OF SORTS.
+Dialogue: 0,0:00:57.01,0:00:58.14,Cap,,0,0,0,,A SECOND COMING.
+Dialogue: 0,0:00:58.67,0:01:00.12,Cap,,0,0,0,,GOD. WHAT'S
+Dialogue: 0,0:01:24.47,0:01:26.22,Cap,,0,0,0,,THIS? PUPPETRY?
+Dialogue: 0,0:01:26.37,0:01:27.84,Cap,,0,0,0,,OH, HOW DELIGHTFUL.
+Dialogue: 0,0:01:34.14,0:01:36.37,Cap,,0,0,0,,GENTLEMEN AND LADIES,
+Dialogue: 0,0:01:36.82,0:01:38.16,Cap,,0,0,0,,A GIFT.
+Dialogue: 0,0:01:42.07,0:01:43.83,Cap,,0,0,0,,ONCE UPON A TIME,
+Dialogue: 0,0:01:43.83,0:01:45.31,Cap,,0,0,0,,IN A VILLAGE THAT WAS\NVERY
+Dialogue: 0,0:01:45.31,0:01:48.81,Cap,,0,0,0,,POOR, THE TOWNSPEOPLE\NBECAME ANGRY AND
+Dialogue: 0,0:01:48.81,0:01:52.17,Cap,,0,0,0,,DISILLUSIONED WITH THE\NCORRUPTION AND LACK
+Dialogue: 0,0:01:52.17,0:01:53.16,Cap,,0,0,0,,OF FOOD.
+Dialogue: 0,0:01:53.19,0:01:54.19,Cap,,0,0,0,,AFTER MANY MONTHS,
+Dialogue: 0,0:01:54.19,0:01:55.72,Cap,,0,0,0,,THERE WERE RUMORS OF\NAN UPRISING.
+Dialogue: 0,0:01:56.03,0:01:57.77,Cap,,0,0,0,,SO THE GREAT MASTER\NPAZUZU HAD
+Dialogue: 0,0:01:57.77,0:01:58.67,Cap,,0,0,0,,A BRILLIANT IDEA.
+Dialogue: 0,0:01:58.67,0:01:59.94,Cap,,0,0,0,,AHEM.
+Dialogue: 3,0:01:56.88,0:02:00.08,End,,0,0,0,,{\fad(200,0)}PART 3\NTOMORROW

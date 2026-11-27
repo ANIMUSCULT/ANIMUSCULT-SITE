@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noimageindex, noai, noimageai">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OUIJA CAT MUSIC MACHINE · ANIMUSCULT</title>
+<meta name="description" content="Every ANIMUSCULT release on the OUIJA CAT MUSIC MACHINE.">
+<meta property="og:title" content="OUIJA CAT MUSIC MACHINE">
+<meta property="og:image" content="/assets/machine/skins/v1.webp">
+<meta name="theme-color" content="#050000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=VT323&family=Noto+Sans+Runic&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/machine/skins/hologram-poster.webp">
+<link rel="stylesheet" href="assets/css/vhs.css">
+<style>
+  :root { --led: #ff2a1f; --led-hot: #ff6b55; --led-dim: rgba(255,42,31,.35); --panel: rgba(8,0,0,.82); }
+  html, body { height: 100%; overflow: hidden; background: #050000; }
+  main { position: fixed; inset: 0; }
+
+  /* ---------- stage: skin image + light canvas, kept at the image's shape ---------- */
+  #stage { position: absolute; left: 0; top: 0; width: 2000px; height: 1120px; transform-origin: 0 0; }
+  #stage img, #stage video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; -webkit-user-drag: none; transition: opacity .25s; }
+  #lights { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: screen; pointer-events: none; }
+  .hot { position: absolute; border-radius: 50%; cursor: pointer; }
+  .hot.rect { border-radius: 4px; }
+  .hot:hover { box-shadow: 0 0 30px rgba(255,42,31,.35), inset 0 0 20px rgba(255,42,31,.25); }
+  .hot:focus-visible { outline: 2px solid var(--led); outline-offset: 4px; }
+  #stage.shake { animation: shake .5s steps(8); }
+  @keyframes shake { 25% { transform: var(--tf) translate(6px, -3px); } 50% { transform: var(--tf) translate(-7px, 4px); } 75% { transform: var(--tf) translate(4px, 2px); } }
+
+  /* ---------- top OSD ---------- */
+  .top { position: fixed; top: var(--nav-h, 56px); left: 0; right: 0; z-index: 30; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+         padding: 16px 22px; font-family: var(--osd); font-size: 21px; letter-spacing: .1em; color: var(--led-hot);
+         text-shadow: 0 0 8px rgba(255,42,31,.7); background: linear-gradient(to bottom, rgba(5,0,0,.85), rgba(5,0,0,0)); pointer-events: none; }
+  .top a, .top button { pointer-events: auto; color: inherit; text-decoration: none; font-family: var(--osd); font-size: inherit; letter-spacing: inherit; }
+  .top .name { color: #ffd8d0; }
+  .top .right { display: flex; gap: 20px; align-items: center; }
+  .top a:hover, .top button:hover { color: #fff; }
+  /* the songs play here through SoundCloud; the same songs on other apps open in a new tab */
+  .listen { display: flex; align-items: center; gap: 10px; color: var(--led-dim); }
+  .top .listen a { padding: 6px 14px; border: 1px solid var(--led); color: #fff; background: rgba(255,42,31,.2);
+    box-shadow: 0 0 14px rgba(255,42,31,.45), inset 0 0 10px rgba(255,42,31,.25); text-shadow: 0 0 8px var(--led); transition: background .2s, box-shadow .2s; }
+  .top .listen a:hover, .top .listen a:focus-visible { background: rgba(255,42,31,.4); box-shadow: 0 0 24px rgba(255,42,31,.8), inset 0 0 12px rgba(255,42,31,.4); outline: none; }
+
+  /* ---------- the deck ---------- */
+  .deck {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 14px 26px; padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+    background: linear-gradient(to top, rgba(5,0,0,.96) 60%, rgba(5,0,0,.0)); font-family: var(--osd); color: var(--led-hot);
+  }
+  .grp { display: flex; align-items: center; gap: 10px; }
+  .lcd {
+    min-width: 0; width: min(440px, 80vw); padding: 8px 12px; border: 1px solid rgba(255,42,31,.35); background: rgba(30,0,0,.55);
+    box-shadow: inset 0 0 18px rgba(255,42,31,.12); text-shadow: 0 0 6px rgba(255,42,31,.8);
+  }
+  .lcd .row { display: flex; justify-content: space-between; gap: 12px; font-size: 20px; letter-spacing: .08em; line-height: 1.1; }
+  .marquee { overflow: hidden; white-space: nowrap; flex: 1; }
+  .marquee span { display: inline-block; padding-left: 100%; animation: marq 16s linear infinite; }
+  @keyframes marq { to { transform: translateX(-100%); } }
+  #seek { position: relative; height: 22px; margin-top: 6px; cursor: pointer; }
+  #seek canvas { width: 100%; height: 100%; display: block; }
+
+  .btn {
+    font-family: var(--osd); font-size: 21px; letter-spacing: .12em; color: var(--led-hot); padding: 8px 12px; min-width: 44px; min-height: 44px;
+    border: 1px solid rgba(255,42,31,.4); background: rgba(25,0,0,.6); text-shadow: 0 0 6px rgba(255,42,31,.8);
+    transition: background .15s, box-shadow .15s, color .15s; touch-action: manipulation; user-select: none;
+  }
+  .btn:hover { background: rgba(255,42,31,.14); color: #fff; }
+  .btn:active, .btn.on { background: rgba(255,42,31,.32); box-shadow: 0 0 18px rgba(255,42,31,.55), inset 0 0 10px rgba(255,42,31,.4); color: #fff; }
+  .btn.big { font-size: 26px; min-width: 58px; }
+
+  /* knobs: a real range input over a drawn knob */
+  .knob { position: relative; width: 50px; text-align: center; }
+  .knob .dial { width: 40px; height: 40px; margin: 0 auto; border-radius: 50%; position: relative;
+    background: radial-gradient(circle at 40% 35%, #3a0d0b, #110302 70%); border: 1px solid rgba(255,42,31,.45); box-shadow: 0 0 10px rgba(255,42,31,.18); }
+  .knob .dial::after { content: ""; position: absolute; left: 50%; top: 4px; width: 2px; height: 13px; margin-left: -1px; background: var(--led); box-shadow: 0 0 6px var(--led); border-radius: 1px; }
+  .knob .dial { transform: rotate(var(--a, 0deg)); }
+  .knob label { display: block; font-size: 16px; letter-spacing: .1em; margin-top: 3px; color: var(--led-dim); }
+  .knob input { position: absolute; inset: 0; opacity: 0; cursor: ns-resize; width: 100%; height: 100%; margin: 0; }
+  .knob input:focus-visible + .dial { outline: 1px solid var(--led); outline-offset: 3px; }
+
+  /* monad dial */
+  .monad { position: relative; width: 96px; height: 96px; touch-action: none; cursor: grab; }
+  .monad canvas { width: 100%; height: 100%; display: block; }
+  .monad input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; margin: 0; pointer-events: none; }
+  .monad-wrap { text-align: center; }
+  .monad-wrap label { display: block; font-size: 16px; letter-spacing: .14em; color: var(--led-dim); margin-top: -2px; }
+
+  /* SoundCloud dock: always visible */
+  #dock { position: fixed; right: 14px; top: calc(var(--nav-h, 56px) + 52px); z-index: 31; width: 300px; max-width: calc(100vw - 28px); }
+  #dock iframe { width: 100%; height: 20px; border: 0; display: block; opacity: .85; }
+  #dock iframe[src*="spotify"] { height: 80px; border-radius: 10px; }
+  #dock iframe:hover { opacity: 1; }
+
+  /* song list */
+  #songs { position: fixed; z-index: 45; top: 0; right: 0; bottom: 0; width: min(420px, 100vw); background: rgba(6,0,0,.96);
+           border-left: 1px solid rgba(255,42,31,.3); transform: translateX(100%); transition: transform .3s; overflow-y: auto;
+           font-family: var(--osd); padding: 70px 18px 40px; }
+  #songs.open { transform: none; }
+  #songs h2 { font-family: var(--osd); font-weight: 400; font-size: 22px; letter-spacing: .14em; color: var(--led-hot); margin: 0 0 14px; }
+  #songs ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  #songs li button { width: 100%; text-align: left; display: grid; grid-template-columns: 2.6em 1fr auto; gap: 8px; padding: 10px 6px; font-size: 20px;
+           letter-spacing: .06em; color: #f3c9c2; border-bottom: 1px solid rgba(255,42,31,.15); font-family: var(--osd); }
+  #songs li button:hover { background: rgba(255,42,31,.1); }
+  #songs li button[aria-current="true"] { color: #fff; text-shadow: 0 0 8px var(--led); }
+  #songs li .n { color: var(--led); }
+  #songs .close { position: absolute; top: 18px; right: 18px; }
+
+  /* power on */
+  #power { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; background: rgba(5,0,0,.62); text-align: center; }
+  #power h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 5vw, 64px); letter-spacing: .12em; margin: 0 0 6px; color: #ffe6e0;
+              text-shadow: 3px 0 var(--chroma-r), -3px 0 var(--chroma-b), 0 0 30px rgba(255,42,31,.5); }
+  #power p { font-family: var(--osd); font-size: 21px; letter-spacing: .12em; color: var(--led-hot); margin: 0 0 30px; }
+  #power .btn { font-size: 28px; padding: 14px 34px; }
+  #power.gone { opacity: 0; pointer-events: none; transition: opacity .5s; }
+
+
+
+
+  .toast { position: fixed; z-index: 35; left: 50%; top: 22%; transform: translateX(-50%); font-family: var(--osd); font-size: clamp(28px, 4vw, 54px);
+           letter-spacing: .3em; color: #fff; text-shadow: 0 0 18px var(--led), 0 0 40px var(--led); pointer-events: none; opacity: 0; transition: opacity .4s; white-space: nowrap; }
+  .toast.on { opacity: 1; transition: opacity .05s; }
+
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+  @media (max-width: 900px) {
+    .deck { gap: 10px 14px; padding-left: 10px; padding-right: 10px; }
+    .knob { width: 44px; } .knob .dial { width: 34px; height: 34px; }
+    .monad { width: 78px; height: 78px; }
+    .btn { font-size: 18px; padding: 6px 9px; }
+    .top { font-size: 18px; padding: 12px 14px; flex-wrap: wrap; } .top .name { max-width: 50vw; }
+    .top .listen a { padding: 4px 9px; }
+    #dock { top: auto; bottom: auto; }
+  }
+  @media (orientation: portrait) {
+    #dock { position: fixed; top: 48px; right: 10px; left: 10px; width: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) { .marquee span { animation: none; padding-left: 0; } #stage.shake { animation: none; } }
+</style>
+</head>
+<body data-music="off">
+<script src="assets/js/nav.js"></script>
+<main>
+  <div id="stage" aria-label="OUIJA CAT MUSIC MACHINE">
+    <img id="skin" alt="" src="assets/machine/skins/hologram-poster.webp">
+    <video id="skinVid" muted playsinline preload="auto" aria-hidden="true" hidden></video>
+    <canvas id="lights" aria-hidden="true"></canvas>
+    <div id="hots"></div>
+  </div>
+</main>
+
+<header class="top">
+  <div class="name">OUIJA CAT MUSIC MACHINE</div>
+  <div class="right"><span class="listen">ALSO ON <a href="https://open.spotify.com/artist/0kx5B1OV6UAIgr8tJaymBm" target="_blank" rel="noopener">SPOTIFY ↗</a></span><span aria-hidden="true">CH 02</span></div>
+</header>
+
+<div id="dock"></div>
+
+<div class="deck" role="group" aria-label="Machine controls">
+  <div class="monad-wrap">
+    <div class="monad" id="monad" role="slider" tabindex="0" aria-label="Monad" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><canvas id="monadCv" width="192" height="192"></canvas></div>
+    <label>MONAD</label>
+  </div>
+
+  <div class="grp">
+    <button class="btn" id="prev" type="button" aria-label="Previous">◀◀</button>
+    <button class="btn big" id="playBtn" type="button" aria-label="Play">▶</button>
+    <button class="btn" id="next" type="button" aria-label="Next">▶▶</button>
+  </div>
+
+  <div class="lcd">
+    <div class="row"><div class="marquee"><span id="title">OUIJA CAT MUSIC MACHINE</span></div><div id="time">00:00</div></div>
+    <div id="seek" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><canvas id="seekCv"></canvas></div>
+  </div>
+
+  <div class="grp" id="knobs">
+    <div class="knob"><input type="range" min="0" max="1" step="0.01" value="0.8" data-k="low" aria-label="Low"><div class="dial"></div><label>LOW</label></div>
+    <div class="knob"><input type="range" min="0" max="1" step="0.01" value="0.8" data-k="mid" aria-label="Mid"><div class="dial"></div><label>MID</label></div>
+    <div class="knob"><input type="range" min="0" max="1" step="0.01" value="0.8" data-k="high" aria-label="High"><div class="dial"></div><label>HIGH</label></div>
+    <div class="knob"><input type="range" min="0" max="1" step="0.01" value="0" data-k="echo" aria-label="Echo"><div class="dial"></div><label>ECHO</label></div>
+    <div class="knob"><input type="range" min="0" max="1" step="0.01" value="0.8" data-k="vol" aria-label="Volume"><div class="dial"></div><label>VOL</label></div>
+  </div>
+
+  <div class="grp">
+    <button class="btn" id="fxCat" type="button">CAT</button>
+    <button class="btn" id="fxSummon" type="button" title="Hold">SUMMON</button>
+    <button class="btn" id="fxShow" type="button">SLIDESHOW</button>
+    <button class="btn" id="fxPossess" type="button" aria-pressed="false">POSSESS</button>
+    <button class="btn" id="songsBtn" type="button" aria-expanded="false" aria-controls="songs">SONGS</button>
+    <button class="btn" id="skinBtn" type="button">SKIN</button>
+  </div>
+</div>
+
+<aside id="songs" aria-label="Songs">
+  <button class="btn close" type="button" id="songsClose" aria-label="Close">✕</button>
+  <h2>SONGS</h2>
+  <ol id="songList"></ol>
+</aside>
+
+<div id="power">
+  <div>
+    <h1>OUIJA CAT MUSIC MACHINE</h1>
+    <p>ANIMUSCULT · EVERY RELEASE</p>
+    <button class="btn" id="powerBtn" type="button">POWER</button>
+  </div>
+</div>
+
+
+
+
+<div class="toast" id="toast" aria-live="polite"></div>
+
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script src="assets/js/vhs.js"></script>
+<script src="assets/js/slideshow.js"></script>
+<script src="assets/js/site-music.js"></script>
+<script src="assets/machine/skins.js"></script>
+<script src="assets/machine/engine.js"></script>
+<script src="assets/machine/possess.js"></script>
+<script src="assets/machine/machine.js"></script>
+</body>
+</html>

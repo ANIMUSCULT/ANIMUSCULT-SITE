@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noimageindex, noai, noimageai">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CLOTHES · ANIMUSCULT</title>
+<meta name="description" content="ANIMUSCULT clothes: WYRM, EYE SEE YOU, MAGIC CAT, MOONWORM and more.">
+<meta property="og:title" content="ANIMUSCULT CLOTHES">
+<meta property="og:image" content="/assets/shop/red-wyrm-pullover-sweatshirt-unisex.webp">
+<meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/vhs.css">
+<style>
+  /* glitter film behind everything */
+  .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: #050505 url(assets/video/clothes-bg-poster.webp) center / cover no-repeat; }
+  .bg video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(5,5,5,.25) 0%, rgba(5,5,5,.55) 40%, rgba(5,5,5,.78) 100%); }
+  body { background: transparent; }
+  html { background: #050505; }
+
+  header.head { padding: 120px clamp(20px, 5vw, 72px) 34px; max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 40px; }
+  .label { font-family: var(--osd); font-size: 20px; letter-spacing: .14em; color: var(--flame); margin: 0 0 10px; }
+  h1 { margin: 0; font-weight: 600; font-size: clamp(56px, 10vw, 150px); line-height: .88; letter-spacing: .06em;
+       text-shadow: 3px 0 var(--chroma-r), -3px 0 var(--chroma-b); }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--osd); }
+  .filters button { font-family: var(--osd); font-size: 20px; letter-spacing: .1em; padding: 7px 12px; border: 1px solid rgba(255,42,31,.35); color: var(--bone-dim); min-height: 40px; }
+  .filters button:hover { color: var(--bone); }
+  .filters button[aria-pressed="true"] { background: rgba(255,42,31,.18); color: #fff; border-color: var(--flame); box-shadow: 0 0 14px rgba(255,42,31,.3); }
+
+  .grid { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 72px) 90px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px 22px; list-style: none; }
+  .item { position: relative; }
+  .item a { text-decoration: none; display: block; }
+  .ph { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: #0d0b0b; box-shadow: 0 0 0 1px rgba(235,229,217,.1), 0 18px 50px rgba(0,0,0,.6); }
+  .ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease, filter .4s; filter: saturate(.92) contrast(1.03); }
+  .ph::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
+    background: repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.25) 3px, rgba(0,0,0,0) 4px), radial-gradient(ellipse at center, rgba(255,30,20,0) 55%, rgba(255,30,20,.28)); }
+  .price { position: absolute; top: 10px; right: 10px; z-index: 2; font-family: var(--osd); font-size: 21px; letter-spacing: .06em; color: #ffd9d1;
+    padding: 2px 8px; background: rgba(20,0,0,.72); border: 1px solid rgba(255,42,31,.5); text-shadow: 0 0 8px var(--flame); }
+  .buy { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 12px; font-family: var(--osd); font-size: 22px; letter-spacing: .2em; text-align: center;
+    color: #fff; background: linear-gradient(to top, rgba(120,0,0,.85), rgba(120,0,0,0)); transform: translateY(100%); transition: transform .3s; text-shadow: 0 0 10px var(--flame); }
+  .item a:hover .ph img, .item a:focus-visible .ph img { transform: scale(1.04); filter: saturate(1.15) contrast(1.1); }
+  .item a:hover .ph::after, .item a:focus-visible .ph::after { opacity: 1; }
+  .item a:hover .buy, .item a:focus-visible .buy { transform: none; }
+  .item a:focus-visible { outline: 1px solid var(--flame); outline-offset: 6px; }
+  .name { margin: 14px 0 2px; font-size: clamp(20px, 1.8vw, 26px); font-weight: 600; letter-spacing: .05em; line-height: 1.05; color: var(--bone); }
+  .kind { font-family: var(--osd); font-size: 18px; letter-spacing: .1em; color: var(--bone-faint); }
+  .item[hidden] { display: none; }
+
+  .note { max-width: 1400px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 72px) 70px; font-family: var(--osd); font-size: 20px; letter-spacing: .06em; color: var(--bone-faint);
+          display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  .note a { color: var(--bone-dim); }
+  .note a:hover { color: var(--flame-hot); }
+
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 12px; }
+    .buy { transform: none; font-size: 18px; padding: 8px; } /* no hover on phones: always show BUY */
+    header.head { padding-top: 96px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ph img, .buy { transition: none; } }
+</style>
+</head>
+<body>
+<script src="assets/js/nav.js"></script>
+<div class="bg" aria-hidden="true"><video id="bgFilm" muted loop playsinline autoplay preload="auto" poster="assets/video/clothes-bg-poster.webp"></video></div>
+
+<main>
+  <header class="head">
+    <div>
+      <p class="label">CH 06</p>
+      <h1>CLOTHES</h1>
+    </div>
+    <div class="filters" role="group" aria-label="Filter">
+      <button type="button" data-f="all" aria-pressed="true">ALL</button>
+      <button type="button" data-f="tops" aria-pressed="false">TOPS</button>
+      <button type="button" data-f="bottoms" aria-pressed="false">BOTTOMS</button>
+      <button type="button" data-f="swim" aria-pressed="false">SWIM</button>
+      <button type="button" data-f="extras" aria-pressed="false">EXTRAS</button>
+    </div>
+  </header>
+
+  <ul class="grid" id="grid" aria-live="polite"></ul>
+
+  <div class="note">
+    <span>CHECKOUT ON FOURTHWALL · SIZES AND COLOURS ON EACH ITEM</span>
+    <a href="https://shop.theanimus.tv/en-usd" rel="noopener" target="_blank">FULL STORE ▶</a>
+  </div>
+</main>
+
+<div class="osd osd-tr" aria-hidden="true" style="top:auto;bottom:22px">CH 06</div>
+
+<script src="assets/js/vhs.js"></script>
+<script src="assets/js/bgfilm.js"></script>
+<script src="assets/js/site-music.js"></script>
+<script>
+(async () => {
+  // background film (assets/js/bgfilm.js: moving-picture stand-in where phones block video)
+  OC_BGFILM(document.getElementById('bgFilm'), 'clothes');
+  const grid = document.getElementById('grid');
+  const group = (kind) => {
+    const k = kind.toLowerCase();
+    if (/bikini|bathing/.test(k)) return 'swim';
+    if (/jogger|legging/.test(k)) return 'bottoms';
+    if (/cap|pack/.test(k)) return 'extras';
+    return 'tops';
+  };
+  let data;
+  try { data = await (await fetch('assets/data/shop.json')).json(); } catch (e) { grid.innerHTML = '<li class="kind">The store is offline. Try the full store link below.</li>'; return; }
+  data.items.forEach((it, i) => {
+    const li = document.createElement('li'); li.className = 'item'; li.dataset.g = group(it.kind);
+    li.innerHTML = `<a href="${it.url}" rel="noopener" target="_blank">
+      <div class="ph"><img alt="" loading="${i < 4 ? 'eager' : 'lazy'}" decoding="async"><span class="price"></span><span class="buy">BUY ▶</span></div>
+      <p class="name"></p><p class="kind"></p></a>`;
+    const img = li.querySelector('img'); img.src = it.img; img.alt = `${it.name} ${it.kind.toLowerCase()}`;
+    li.querySelector('.price').textContent = '$' + it.price;
+    li.querySelector('.name').textContent = it.name;
+    li.querySelector('.kind').textContent = it.kind;
+    li.querySelector('a').setAttribute('aria-label', `${it.name} ${it.kind}, $${it.price}, opens the store`);
+    grid.appendChild(li);
+  });
+  document.querySelectorAll('.filters button').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('.filters button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    const f = b.dataset.f;
+    grid.querySelectorAll('.item').forEach((li) => { li.hidden = f !== 'all' && li.dataset.g !== f; });
+  }));
+})();
+</script>
+</body>
+</html>

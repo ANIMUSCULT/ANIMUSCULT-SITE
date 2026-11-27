@@ -1,0 +1,134 @@
+{
+ "_how": "Clothes from the Fourthwall store (shop.theanimus.tv). Copied 2026-11-20. Buy buttons open the item on Fourthwall.",
+ "store": "https://shop.theanimus.tv/en-usd",
+ "items": [
+  {
+   "slug": "blue-wyrm-joggers",
+   "name": "BLUE WYRM",
+   "kind": "JOGGERS",
+   "price": "50",
+   "img": "assets/shop/blue-wyrm-joggers.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/blue-wyrm-joggers"
+  },
+  {
+   "slug": "red-wyrm-pullover-sweatshirt-unisex",
+   "name": "RED WYRM",
+   "kind": "SWEATSHIRT",
+   "price": "50",
+   "img": "assets/shop/red-wyrm-pullover-sweatshirt-unisex.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/red-wyrm-pullover-sweatshirt-unisex"
+  },
+  {
+   "slug": "hey-moon-mens-tshirt-up-to-size-4x",
+   "name": "HEY MOON",
+   "kind": "T-SHIRT",
+   "price": "25",
+   "img": "assets/shop/hey-moon-mens-tshirt-up-to-size-4x.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/hey-moon-mens-tshirt-up-to-size-4x"
+  },
+  {
+   "slug": "ego-long-sleeve-sweater-w",
+   "name": "EGO",
+   "kind": "LONG SLEEVE SWEATER",
+   "price": "45",
+   "img": "assets/shop/ego-long-sleeve-sweater-w.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/ego-long-sleeve-sweater-w"
+  },
+  {
+   "slug": "moonworm-01-crop-top-bralette",
+   "name": "MOONWORM 01",
+   "kind": "BRALETTE",
+   "price": "45",
+   "img": "assets/shop/moonworm-01-crop-top-bralette.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/moonworm-01-crop-top-bralette"
+  },
+  {
+   "slug": "limerence-crop-top-bralette",
+   "name": "LIMERENCE",
+   "kind": "BRALETTE",
+   "price": "45",
+   "img": "assets/shop/limerence-crop-top-bralette.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/limerence-crop-top-bralette"
+  },
+  {
+   "slug": "red-lightning-crop-top",
+   "name": "RED LIGHTNING",
+   "kind": "CROP TOP",
+   "price": "30",
+   "img": "assets/shop/red-lightning-crop-top.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/red-lightning-crop-top"
+  },
+  {
+   "slug": "animuscult-organic-oversized-sweatshirt",
+   "name": "ANIMUSCULT LOGO",
+   "kind": "OVERSIZED SWEATSHIRT",
+   "price": "50",
+   "img": "assets/shop/animuscult-organic-oversized-sweatshirt.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/animuscult-organic-oversized-sweatshirt"
+  },
+  {
+   "slug": "animuscult-logo-low-profile-cap",
+   "name": "ANIMUSCULT LOGO",
+   "kind": "LOW PROFILE CAP",
+   "price": "25",
+   "img": "assets/shop/animuscult-logo-low-profile-cap.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/animuscult-logo-low-profile-cap"
+  },
+  {
+   "slug": "vision-soft-faded-tshirt-unisex",
+   "name": "VISION",
+   "kind": "FADED T-SHIRT",
+   "price": "25",
+   "img": "assets/shop/vision-soft-faded-tshirt-unisex.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/vision-soft-faded-tshirt-unisex"
+  },
+  {
+   "slug": "eye-see-you-fanny-pack",
+   "name": "EYE SEE YOU",
+   "kind": "FANNY PACK",
+   "price": "30",
+   "img": "assets/shop/eye-see-you-fanny-pack.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/eye-see-you-fanny-pack"
+  },
+  {
+   "slug": "eye-see-you-02-leggings",
+   "name": "EYE SEE YOU 02",
+   "kind": "LEGGINGS",
+   "price": "50",
+   "img": "assets/shop/eye-see-you-02-leggings.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/eye-see-you-02-leggings"
+  },
+  {
+   "slug": "eye-see-you-long-sleeve-all-over-print",
+   "name": "EYE SEE YOU",
+   "kind": "LONG SLEEVE CROP TOP",
+   "price": "45",
+   "img": "assets/shop/eye-see-you-long-sleeve-all-over-print.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/eye-see-you-long-sleeve-all-over-print"
+  },
+  {
+   "slug": "eye-see-you-crop-top-bralette",
+   "name": "EYE SEE YOU",
+   "kind": "BRALETTE",
+   "price": "42",
+   "img": "assets/shop/eye-see-you-crop-top-bralette.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/eye-see-you-crop-top-bralette"
+  },
+  {
+   "slug": "magic-cat-two-piece-bathing-suit-w",
+   "name": "MAGIC CAT",
+   "kind": "HIGH WAIST BIKINI",
+   "price": "50",
+   "img": "assets/shop/magic-cat-two-piece-bathing-suit-w.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/magic-cat-two-piece-bathing-suit-w"
+  },
+  {
+   "slug": "magic-cat-string-bikini",
+   "name": "MAGIC CAT",
+   "kind": "STRING BIKINI",
+   "price": "50",
+   "img": "assets/shop/magic-cat-string-bikini.webp",
+   "url": "https://shop.theanimus.tv/en-usd/products/magic-cat-string-bikini"
+  }
+ ]
+}

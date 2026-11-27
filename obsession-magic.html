@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noimageindex, noai, noimageai">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OBSESSION MAGIC · ANIMUSCULT</title>
+<meta name="description" content="OBSESSION MAGIC, the new ANIMUSCULT single. Out January 8 on Spotify. Pre-save it now.">
+<meta property="og:title" content="ANIMUSCULT · OBSESSION MAGIC">
+<meta property="og:description" content="The new single. Out January 8 on Spotify. Pre-save it now.">
+<meta property="og:image" content="/assets/releases/obsession-magic.webp">
+<meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/vhs.css">
+<style>
+  html { background: #050505; } body { background: transparent; }
+  /* backdrop: the cover, blurred and slowly breathing */
+  .bg { position: fixed; inset: -60px; z-index: -1; background: #050505 url(assets/releases/obsession-magic.webp) center / cover; filter: blur(46px) saturate(1.3) brightness(.45);
+        animation: breathe 14s ease-in-out infinite alternate; }
+  .bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(5,5,5,0) 0%, rgba(5,5,5,.75) 80%); }
+  @keyframes breathe { from { transform: scale(1); } to { transform: scale(1.08); } }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 120px clamp(16px, 5vw, 72px) 90px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+          gap: clamp(28px, 5vw, 80px); align-items: center; min-height: 100vh; box-sizing: border-box; }
+  .art { position: relative; aspect-ratio: 1; }
+  .art img { width: 100%; height: 100%; object-fit: cover; display: block;
+             box-shadow: 0 0 0 1px rgba(235,229,217,.12), 0 0 90px rgba(255,30,20,.3), 0 40px 90px rgba(0,0,0,.75); }
+  .art .no { position: absolute; top: 12px; left: 12px; font-family: var(--osd); font-size: 20px; letter-spacing: .12em; color: #ffd9d1; padding: 2px 8px;
+             background: rgba(20,0,0,.72); border: 1px solid rgba(255,42,31,.5); text-shadow: 0 0 8px var(--flame); }
+  .label { font-family: var(--osd); font-size: 20px; letter-spacing: .14em; color: var(--flame); margin: 0 0 12px; }
+  h1 { margin: 0; font-weight: 600; font-size: clamp(52px, 7.6vw, 116px); line-height: .9; letter-spacing: .04em; text-shadow: 3px 0 var(--chroma-r), -3px 0 var(--chroma-b); }
+  .by { font-family: var(--osd); font-size: 22px; letter-spacing: .14em; color: var(--bone-dim); margin: 18px 0 0; }
+  .date { font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; letter-spacing: .08em; margin: 30px 0 14px; }
+
+  .count { display: flex; gap: clamp(10px, 2vw, 22px); margin: 0 0 32px; font-family: var(--osd); }
+  .count div { min-width: 74px; padding: 8px 10px 4px; text-align: center; background: rgba(20,0,0,.55); border: 1px solid rgba(255,42,31,.35); }
+  .count b { display: block; font-weight: 400; font-size: clamp(38px, 4.4vw, 54px); line-height: 1; color: #ffd9d1; text-shadow: 0 0 10px var(--flame); }
+  .count span { font-size: 15px; letter-spacing: .14em; color: var(--bone-dim); }
+
+  .go { display: inline-block; font-family: var(--osd); font-size: 28px; letter-spacing: .12em; text-decoration: none; color: #fff; padding: 12px 30px 10px;
+        background: linear-gradient(#c01a10, #7a0700); border: 1px solid #ff6b55; box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 0 30px rgba(255,42,31,.55);
+        animation: pulse 2.4s ease-in-out infinite; }
+  .go:hover, .go:focus-visible { background: linear-gradient(#e0291c, #940b00); outline: none; box-shadow: 0 0 0 1px #fff, 0 0 44px rgba(255,42,31,.8); }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 0 50px rgba(255,42,31,.85); } }
+  .note { font-family: var(--osd); font-size: 19px; letter-spacing: .06em; color: var(--bone-dim); margin: 14px 0 0; max-width: 34em; }
+  .listen { display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 30px; font-family: var(--osd); font-size: 21px; letter-spacing: .08em; }
+  .listen a { color: var(--bone-dim); text-decoration: none; border-bottom: 1px solid transparent; }
+  .listen a:hover { color: var(--bone); border-color: var(--flame); }
+
+  @media (max-width: 860px) {
+    .wrap { grid-template-columns: 1fr; padding-top: 90px; min-height: 0; }
+    .art { max-width: 440px; }
+    .count div { min-width: 0; flex: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .bg, .go { animation: none; } }
+</style>
+</head>
+<body>
+<script src="assets/js/nav.js"></script>
+<div class="bg" aria-hidden="true"></div>
+
+<main class="wrap">
+  <div class="art"><img src="assets/releases/obsession-magic.webp" alt="Cover of OBSESSION MAGIC"><span class="no" id="no">NEW SINGLE</span></div>
+  <div class="info">
+    <p class="label" id="label">COMING TO SPOTIFY</p>
+    <h1>OBSESSION<br>MAGIC</h1>
+    <p class="by">ANIMUSCULT · SINGLE · 2027</p>
+    <p class="date" id="date">OUT JANUARY 8</p>
+    <div class="count" id="count" aria-label="Time until release">
+      <div><b id="d">--</b><span>DAYS</span></div>
+      <div><b id="h">--</b><span>HOURS</span></div>
+      <div><b id="m">--</b><span>MIN</span></div>
+      <div><b id="s">--</b><span>SEC</span></div>
+    </div>
+    <a class="go" id="go" href="https://distrokid.com/hyperfollow/animuscult/obsession-magic-2" target="_blank" rel="noopener">PRE-SAVE ON SPOTIFY ↗</a>
+    <p class="note" id="note">Pre-save it and it lands in your library the moment it's out.</p>
+    <div class="listen">
+      <a href="https://soundcloud.com/animuscult/obsession-magic" target="_blank" rel="noopener">HEAR THE DEMO ON SOUNDCLOUD ↗</a>
+      <a href="https://open.spotify.com/artist/0kx5B1OV6UAIgr8tJaymBm" target="_blank" rel="noopener">ANIMUSCULT ON SPOTIFY ↗</a>
+      <a href="releases.html" data-channel>ALL RELEASES</a>
+    </div>
+  </div>
+</main>
+
+<script src="assets/js/vhs.js"></script>
+<script src="assets/js/site-music.js"></script>
+<script>
+// Counts down to the DistroKid release time (Jan 8 2027, 08:00 UTC), then turns into "OUT NOW".
+// The same DistroKid link works after release: it sends people to the song on Spotify.
+(() => {
+  const OUT = Date.parse('2027-01-08T08:00:00Z');
+  const $ = (id) => document.getElementById(id);
+  const pad = (n) => String(n).padStart(2, '0');
+  // say the date in the visitor's own time zone (it can be Jan 7 in the Americas)
+  try { $('date').textContent = 'OUT ' + new Date(OUT).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }).toUpperCase(); } catch (e) {}
+  function tick() {
+    const left = OUT - Date.now();
+    if (left <= 0) {
+      $('count').remove(); $('label').textContent = 'OUT NOW ON SPOTIFY'; $('date').textContent = 'OUT NOW';
+      $('no').textContent = 'OUT NOW'; $('go').textContent = 'LISTEN ON SPOTIFY ↗'; $('note').remove();
+      return;
+    }
+    const t = Math.floor(left / 1000);
+    $('d').textContent = Math.floor(t / 86400); $('h').textContent = pad(Math.floor(t / 3600) % 24);
+    $('m').textContent = pad(Math.floor(t / 60) % 60); $('s').textContent = pad(t % 60);
+    setTimeout(tick, 1000 - (Date.now() % 1000));
+  }
+  tick();
+})();
+</script>
+</body>
+</html>

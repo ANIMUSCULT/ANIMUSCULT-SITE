@@ -1,0 +1,30 @@
+{
+  "_how": "Main videos from youtube.com/@AnimusCultOfficial (Shorts are in their own list below), newest first. featured: the video on the big screen when the page opens. Add a video: copy the id after watch?v= and add a row. kind: video, film or long.",
+  "channel": "https://www.youtube.com/@AnimusCultOfficial",
+  "featured": "zORsafziMD0",
+  "_shorts": "Vertical videos shown in the SHORTS row. Add one: copy the id after /shorts/ and add a row.",
+  "shorts": [
+    { "id": "hQQg9ZRIcps", "title": "HEY GOD", "sub": "GET LOST REMIX" },
+    { "id": "n2WlrGjJmds", "title": "DEVOTION", "sub": "ANIMUSCULT" },
+    { "id": "WlKyAs95imQ", "title": "I KNOW YOU", "sub": "MOON WORLD · MUSIC VIDEO" },
+    { "id": "tihUXOUdhNs", "title": "RUNNING WITH MY WOLVES", "sub": "FEAT. MOON WORLD" },
+    { "id": "DULFLVsW4gM", "title": "SIMP FOR GODZILLA", "sub": "ANIMUSCULT" }
+  ],
+  "tiktok": "animuscult",
+  "videos": [
+    { "id": "T3l8Gcr2uXQ", "title": "PARASITE", "sub": "MUSIC VIDEO · 4K", "len": "1:32", "kind": "video" },
+    { "id": "CzOo8I-tcVA", "title": "RARE CUTS, UNRELEASED TRACKS AND ODDITIES", "sub": "ANIMUSCULT & MOON WORLD · VISUALIZER", "len": "57:21", "kind": "long" },
+    { "id": "SergIMQTM50", "title": "ALBUM TEASER", "sub": "ANIMUSCULT X MOON WORLD", "len": "30:56", "kind": "long" },
+    { "id": "zORsafziMD0", "title": "SWINE", "sub": "A DARK FAIRY TALE", "len": "19:25", "kind": "film" },
+    { "id": "jMxibpVlfMI", "title": "ENEMY", "sub": "MUSIC VIDEO", "len": "3:12", "kind": "video" },
+    { "id": "vnVKUasXQpE", "title": "MONSTERS EP", "sub": "FULL EP", "len": "44:18", "kind": "long" },
+    { "id": "4KyE00VKrK4", "title": "MONSTERS", "sub": "MUSIC VIDEO", "len": "3:25", "kind": "video" },
+    { "id": "Bouc5nUFIww", "title": "OUROBOROS", "sub": "MUSIC VIDEO · 4K", "len": "2:33", "kind": "video" },
+    { "id": "eGSzbok9Gfk", "title": "FACEDOWN IN THE CLUB + BRAINWORM", "sub": "MUSIC VIDEO", "len": "3:31", "kind": "video" },
+    { "id": "-sxfVwrsfhU", "title": "ROSES FOR WOLVES", "sub": "MUSIC VIDEO", "len": "4:26", "kind": "video" },
+    { "id": "jsNUax2dX3g", "title": "LET THEM EAT LA BOUX", "sub": "MUSIC VIDEO", "len": "1:16", "kind": "video" },
+    { "id": "00d8iKjf-Lc", "title": "QT DIE", "sub": "A SHORT FILM", "len": "3:04", "kind": "film" },
+    { "id": "cyJflSGrqXs", "title": "MIDNIGHT IN BABYLON", "sub": "MUSIC VIDEO", "len": "3:45", "kind": "video" },
+    { "id": "wed9K0g--sE", "title": "THE DUST OF WHAT IS LEFT", "sub": "VISUALIZER", "len": "6:26", "kind": "video" }
+  ]
+}

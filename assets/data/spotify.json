@@ -1,0 +1,16 @@
+{
+  "_how": "ANIMUSCULT on Spotify. Add a song: copy its Spotify link (Share > Copy song link), take the id after /track/, add a row. secs = length in seconds (the lights use it to find the song map).",
+  "artist": "spotify:artist:0kx5B1OV6UAIgr8tJaymBm",
+  "tracks": [
+    { "uri": "spotify:track:4QSiSlspENd0ClzV51xkE2", "title": "HEY GOD - GET HIGH WITH ME", "secs": 107.96 },
+    { "uri": "spotify:track:1S9HQDyYUMHuqPvMsz91u5", "title": "HEY MOON (with MOON WORLD)", "secs": 108.72 },
+    { "uri": "spotify:track:4a79NVJ2WFHniNxCqr9VXB", "title": "HEY GOD GET HIGH WITH ME - Drum and Bass Remix", "secs": 144.6 },
+    { "uri": "spotify:track:1Pr3wra66kzhfkAyceXsDf", "title": "HEY GOD", "secs": 104.96 },
+    { "uri": "spotify:track:4XY4geNdSkMGsPXy99QmL7", "title": "BRAINWORM - OBVI REMIX", "secs": 141.44 },
+    { "uri": "spotify:track:4CQdHsyH3wHOcGJvtsNuHG", "title": "ENEMY", "secs": 219.0 },
+    { "uri": "spotify:track:6PUUYxQ13jL0xHvoE6LtGA", "title": "LEGEND (Six Rings) (with MOON WORLD)", "secs": 163.32 },
+    { "uri": "spotify:track:5RgkAHim1xzCMdzTq6aoxJ", "title": "DOCTOR DOOM (with MOON WORLD)", "secs": 168.77 },
+    { "uri": "spotify:track:2ey2tSMsbda6NyHMZdlwB1", "title": "BLOOD MOON (with MOON WORLD)", "secs": 141.64 },
+    { "uri": "spotify:track:7upEOP7GPrr6NIPHK4OHNJ", "title": "ENEMY SLOWDANCE", "secs": 212.08 }
+  ]
+}

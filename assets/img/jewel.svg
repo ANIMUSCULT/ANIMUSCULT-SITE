@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- OUROBOROS JEWEL: a cut ruby in a blackened gold setting, ringed by a snake eating its own tail.
+       Pieces with ids (snake, gem, glow) are animated by the page. -->
+  <defs>
+    <radialGradient id="jwGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ff2a1f" stop-opacity=".85"/>
+      <stop offset=".55" stop-color="#ff1a10" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#ff0000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="jwMetal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3d9a4"/>
+      <stop offset=".25" stop-color="#8a6a3a"/>
+      <stop offset=".5" stop-color="#2a1c10"/>
+      <stop offset=".75" stop-color="#b08a4e"/>
+      <stop offset="1" stop-color="#3a2614"/>
+    </linearGradient>
+    <linearGradient id="jwMetalDark" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a4224"/>
+      <stop offset=".5" stop-color="#120b06"/>
+      <stop offset="1" stop-color="#6e5230"/>
+    </linearGradient>
+    <linearGradient id="jwScale" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8ecef"/>
+      <stop offset=".35" stop-color="#7c858c"/>
+      <stop offset=".6" stop-color="#1c2024"/>
+      <stop offset="1" stop-color="#a9b1b7"/>
+    </linearGradient>
+    <radialGradient id="jwTable" cx="42%" cy="38%" r="70%">
+      <stop offset="0" stop-color="#ffb3a6"/>
+      <stop offset=".25" stop-color="#ff3b2b"/>
+      <stop offset=".7" stop-color="#a00008"/>
+      <stop offset="1" stop-color="#3d0004"/>
+    </radialGradient>
+    <linearGradient id="jwF1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6a55"/><stop offset="1" stop-color="#7a0006"/></linearGradient>
+    <linearGradient id="jwF2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4141c"/><stop offset="1" stop-color="#2a0003"/></linearGradient>
+    <linearGradient id="jwF3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#4a0005"/><stop offset="1" stop-color="#ff2e22"/></linearGradient>
+    <linearGradient id="jwF4" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff8a74"/><stop offset=".5" stop-color="#b3000c"/><stop offset="1" stop-color="#1f0002"/></linearGradient>
+    <radialGradient id="jwCore" cx="50%" cy="55%" r="50%">
+      <stop offset="0" stop-color="#ffd0c4" stop-opacity=".9"/>
+      <stop offset=".4" stop-color="#ff2a1f" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#ff0000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="jwSoft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="jwShadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity=".8"/></filter>
+    <clipPath id="jwGemClip"><polygon points="100,38 144,56 162,100 144,144 100,162 56,144 38,100 56,56"/></clipPath>
+  </defs>
+
+  <!-- outer red glow -->
+  <circle id="glow" cx="100" cy="100" r="99" fill="url(#jwGlow)"/>
+
+  <!-- setting: blackened gold bezel -->
+  <circle cx="100" cy="100" r="88" fill="url(#jwMetalDark)" filter="url(#jwShadow)"/>
+  <circle cx="100" cy="100" r="86" fill="none" stroke="url(#jwMetal)" stroke-width="3"/>
+  <circle cx="100" cy="100" r="66" fill="none" stroke="url(#jwMetal)" stroke-width="2.5"/>
+  <!-- prongs -->
+  <g fill="url(#jwMetal)" filter="url(#jwShadow)">
+    <path d="M100 30 l6 10 h-12 z"/><path d="M170 100 l-10 6 v-12 z"/><path d="M100 170 l-6 -10 h12 z"/><path d="M30 100 l10 -6 v12 z"/>
+  </g>
+
+  <!-- the ruby: octagon step cut -->
+  <g id="gem">
+    <polygon points="100,38 144,56 162,100 144,144 100,162 56,144 38,100 56,56" fill="#5a0006"/>
+    <g clip-path="url(#jwGemClip)">
+      <!-- crown facets between girdle and table -->
+      <polygon points="100,38 144,56 125,75 100,66" fill="url(#jwF1)"/>
+      <polygon points="100,38 56,56 75,75 100,66" fill="url(#jwF4)"/>
+      <polygon points="144,56 162,100 134,100 125,75" fill="url(#jwF2)"/>
+      <polygon points="162,100 144,144 125,125 134,100" fill="url(#jwF3)"/>
+      <polygon points="144,144 100,162 100,134 125,125" fill="url(#jwF2)"/>
+      <polygon points="100,162 56,144 75,125 100,134" fill="url(#jwF3)"/>
+      <polygon points="56,144 38,100 66,100 75,125" fill="url(#jwF2)"/>
+      <polygon points="38,100 56,56 75,75 66,100" fill="url(#jwF1)"/>
+      <!-- table -->
+      <polygon points="100,66 125,75 134,100 125,125 100,134 75,125 66,100 75,75" fill="url(#jwTable)"/>
+      <!-- star facets on the table -->
+      <polygon points="100,66 125,75 100,100" fill="#ff6a5a" opacity=".35"/>
+      <polygon points="134,100 125,125 100,100" fill="#3a0004" opacity=".45"/>
+      <polygon points="100,134 75,125 100,100" fill="#ff3a2a" opacity=".25"/>
+      <polygon points="66,100 75,75 100,100" fill="#ffb0a0" opacity=".3"/>
+      <!-- inner fire -->
+      <circle cx="100" cy="104" r="34" fill="url(#jwCore)" filter="url(#jwSoft)"/>
+      <!-- facet edges -->
+      <g fill="none" stroke="#ffc2b5" stroke-opacity=".35" stroke-width=".8">
+        <polygon points="100,66 125,75 134,100 125,125 100,134 75,125 66,100 75,75"/>
+        <path d="M100 38 L100 66 M144 56 L125 75 M162 100 L134 100 M144 144 L125 125 M100 162 L100 134 M56 144 L75 125 M38 100 L66 100 M56 56 L75 75"/>
+      </g>
+      <!-- specular highlights -->
+      <polygon points="72,62 92,52 84,70" fill="#fff" opacity=".75"/>
+      <polygon points="78,80 90,74 86,86" fill="#fff" opacity=".45"/>
+      <path d="M118 140 q10 -4 16 -14" fill="none" stroke="#ffd6cc" stroke-width="2" stroke-linecap="round" opacity=".35"/>
+    </g>
+    <polygon points="100,38 144,56 162,100 144,144 100,162 56,144 38,100 56,56" fill="none" stroke="url(#jwMetal)" stroke-width="2"/>
+    <!-- sparkle -->
+    <g id="spark" transform="translate(82 64)" opacity=".95">
+      <path d="M0 -9 L1.6 -1.6 L9 0 L1.6 1.6 L0 9 L-1.6 1.6 L-9 0 L-1.6 -1.6 Z" fill="#fff"/>
+    </g>
+  </g>
+
+  <!-- the ouroboros: a scaled snake circling the stone, swallowing its tail at the top -->
+  <g id="snake" filter="url(#jwShadow)">
+    <!-- body (open at the top where the head bites the tail) -->
+    <path d="M114 23.5 A77 77 0 1 1 86 23.5" fill="none" stroke="url(#jwScale)" stroke-width="13" stroke-linecap="round"/>
+    <!-- belly line and scales -->
+    <path d="M114 23.5 A77 77 0 1 1 86 23.5" fill="none" stroke="#0b0d0f" stroke-width="13" stroke-dasharray="2.2 4.2" stroke-opacity=".55"/>
+    <path d="M112 29.5 A71 71 0 1 1 88 29.5" fill="none" stroke="#f2f4f5" stroke-width="1.2" stroke-opacity=".45"/>
+    <!-- tail tapering into the mouth -->
+    <path d="M86 23.5 Q94 21 101 23" fill="none" stroke="url(#jwScale)" stroke-width="6" stroke-linecap="round"/>
+    <!-- head -->
+    <path d="M114 23.5 C122 15 136 14 141 22 C145 29 138 36 128 35 C122 34.5 117 31 114 28 Z" fill="url(#jwScale)" stroke="#0b0d0f" stroke-width="1"/>
+    <!-- jaw biting the tail -->
+    <path d="M114 25 L103 22.5 L105 27 Z" fill="#c9cfd3" stroke="#0b0d0f" stroke-width=".8"/>
+    <!-- red eye -->
+    <circle id="eye" cx="131" cy="24" r="2.6" fill="#ff2a1f"/>
+    <circle cx="131.7" cy="23.3" r=".8" fill="#fff"/>
+  </g>
+</svg>
